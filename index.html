@@ -1,4 +1,4 @@
-acmmnddd<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -9,7 +9,7 @@ acmmnddd<!DOCTYPE html>
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-  :root  {
+  :root {
     --black: #080808;
     --gold: #C9A84C;
     --gold-dim: #8A6E2F;
@@ -387,7 +387,12 @@ acmmnddd<!DOCTYPE html>
   </nav>
 
   <main class="hero">
-    <img src="logoo.png" alt="M3NUX" style="height: 80px; object-fit: contain; margin-bottom: 24px; display: block;">
+    <div class="eyebrow">Redefining the dining experience</div>
+
+    <img src="logoo.png" alt="M3NUX" style="height: 160px; object-fit: contain; margin-bottom: 32px; display: block;">
+
+    <h1>Your guest<span>already knows.</span></h1>
+
     <p class="sub">Before your server arrives — the decision is made. M3NUX transforms how restaurants communicate with their guests.</p>
 
     <div class="divider"></div>
@@ -468,10 +473,10 @@ acmmnddd<!DOCTYPE html>
     document.getElementById('successMsg').classList.add('show');
 
     fetch('https://formspree.io/f/mnjordyd', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ name, restaurant, email })
-});
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, restaurant, email })
+    });
   }
 </script>
 
