@@ -470,12 +470,11 @@
     document.getElementById('formSection').classList.add('hidden');
     document.getElementById('successMsg').classList.add('show');
 
-    // Replace this URL with your Formspree or Netlify Forms endpoint
-    // fetch('https://formspree.io/f/YOUR_ID', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({ name, restaurant, email })
-    // });
+    fetch('https://formspree.io/f/mnjordyd', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ name, restaurant, email })
+});
   }
 </script>
 
