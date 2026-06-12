@@ -8,395 +8,394 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;1,300&family=Barlow+Condensed:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
   :root {
     --black: #080808;
     --gold: #C9A84C;
     --gold-dim: #8A6E2F;
-    --gold-glow: rgba(201,168,76,0.12);
+    --gold-glow: rgba(201,168,76,0.10);
     --white: #F0EDE6;
     --muted: rgba(240,237,230,0.45);
-    --red: #C0392B;
   }
-
   html, body {
-    height: 100%;
     background: var(--black);
     color: var(--white);
     font-family: 'Barlow', sans-serif;
     overflow-x: hidden;
     cursor: crosshair;
   }
-
-  /* Skull texture overlay */
   body::before {
     content: '';
     position: fixed;
     inset: 0;
-    background-image: 
+    background-image:
       radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 60%),
       url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     pointer-events: none;
     z-index: 0;
   }
-
-  /* Noise grain */
-  body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.6;
-  }
-
   .wrapper {
     position: relative;
     z-index: 1;
-    min-height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    grid-template-columns: 1fr;
-    max-width: 1200px;
+    max-width: 780px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 28px;
   }
-
-  /* NAV */
   nav {
-    padding: 32px 0 0;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards 0.2s;
+    justify-content: space-between;
+    padding: 36px 0 0;
   }
-
   .nav-logo {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 22px;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.18em;
     color: var(--gold);
   }
-
   .nav-tag {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 11px;
-    letter-spacing: 0.25em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--gold-dim);
   }
-
-  /* HERO */
   .hero {
+    padding: 80px 0 0;
+    min-height: 85vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 60px 0 40px;
-    opacity: 0;
-    animation: fadeUp 1s ease forwards 0.4s;
   }
-
   .eyebrow {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--gold-dim);
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .eyebrow::before {
-    content: '';
-    display: block;
-    width: 40px;
-    height: 1px;
-    background: var(--gold-dim);
-  }
-
-  h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(72px, 14vw, 160px);
-    line-height: 0.88;
-    letter-spacing: 0.02em;
-    color: var(--white);
-    margin-bottom: 8px;
-  }
-
-  h1 span {
-    color: var(--gold);
-    display: block;
-  }
-
-  .sub {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(14px, 2.5vw, 20px);
-    font-weight: 300;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-top: 20px;
-    margin-bottom: 56px;
-    max-width: 520px;
-  }
-
-  /* Divider line */
-  .divider {
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, var(--gold) 0%, rgba(201,168,76,0.1) 60%, transparent 100%);
-    margin-bottom: 52px;
-  }
-
-  /* FORM */
-  .form-section {
-    max-width: 560px;
-    opacity: 0;
-    animation: fadeUp 1s ease forwards 0.7s;
-  }
-
-  .form-label {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 11px;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: var(--gold-dim);
+    color: var(--gold);
     margin-bottom: 20px;
-    display: block;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
   }
-
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 12vw, 110px);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+  h1 span { display: block; color: var(--gold); }
+  .sub {
+    margin-top: 28px;
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.65;
+    color: var(--muted);
+    max-width: 520px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.4;
+    margin: 36px 0;
+  }
+  .stats {
+    display: flex;
+    gap: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.8s forwards;
+    flex-wrap: wrap;
+  }
+  .stat-item { display: flex; flex-direction: column; gap: 4px; }
+  .stat-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    letter-spacing: 0.04em;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+  }
+  .section {
+    padding: 100px 0;
+    border-top: 1px solid rgba(201,168,76,0.12);
+  }
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 40px;
+  }
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(201,168,76,0.1);
+  }
+  .benefit-card {
+    background: var(--black);
+    padding: 36px 32px;
+    transition: background 0.3s ease;
+  }
+  .benefit-card:hover { background: rgba(201,168,76,0.04); }
+  .benefit-icon { font-size: 22px; margin-bottom: 16px; opacity: 0.8; }
+  .benefit-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .benefit-desc {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+  .video-wrap {
+    position: relative;
+    width: 100%;
+    background: #0d0d0d;
+    border: 1px solid rgba(201,168,76,0.15);
+    overflow: hidden;
+  }
+  .video-wrap video {
+    width: 100%;
+    display: block;
+    max-height: 480px;
+    object-fit: cover;
+  }
+  .video-caption {
+    text-align: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-top: 16px;
+  }
+  .demo-section {
+    padding: 100px 0 120px;
+    border-top: 1px solid rgba(201,168,76,0.12);
+  }
+  .demo-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(38px, 6vw, 60px);
+    letter-spacing: 0.04em;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .demo-headline span { color: var(--gold); }
+  .demo-sub {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--muted);
+    margin-bottom: 44px;
+    max-width: 440px;
+    line-height: 1.6;
+  }
   .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
     margin-bottom: 12px;
   }
-
-  .input-wrap {
-    position: relative;
-  }
-
   .input-wrap input {
     width: 100%;
-    background: rgba(201,168,76,0.04);
-    border: 1px solid rgba(201,168,76,0.2);
+    background: transparent;
+    border: 1px solid rgba(201,168,76,0.22);
     color: var(--white);
     font-family: 'Barlow', sans-serif;
     font-size: 14px;
     font-weight: 300;
-    padding: 16px 20px;
+    padding: 14px 18px;
     outline: none;
-    transition: border-color 0.3s, background 0.3s;
+    transition: border-color 0.3s ease;
     letter-spacing: 0.03em;
-    border-radius: 0;
-    -webkit-appearance: none;
   }
-
-  .input-wrap input::placeholder {
-    color: rgba(240,237,230,0.25);
-    font-weight: 300;
-  }
-
-  .input-wrap input:focus {
-    border-color: var(--gold);
-    background: rgba(201,168,76,0.07);
-  }
-
+  .input-wrap input::placeholder { color: rgba(240,237,230,0.25); }
+  .input-wrap input:focus { border-color: var(--gold); }
   .btn {
-    width: 100%;
+    margin-top: 8px;
     background: var(--gold);
     color: var(--black);
     border: none;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px;
-    letter-spacing: 0.15em;
-    padding: 18px 32px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 16px 44px;
     cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
-    margin-top: 4px;
-    display: block;
+    transition: opacity 0.25s ease, transform 0.2s ease;
   }
-
-  .btn:hover {
-    background: #DDB94E;
-    transform: translateY(-1px);
-  }
-
-  .btn:active {
-    transform: translateY(0);
-  }
-
+  .btn:hover { opacity: 0.88; transform: translateY(-1px); }
   .form-note {
-    font-size: 11px;
-    color: rgba(240,237,230,0.25);
     margin-top: 14px;
-    letter-spacing: 0.05em;
-    font-weight: 300;
+    font-size: 12px;
+    color: rgba(240,237,230,0.25);
+    letter-spacing: 0.04em;
   }
-
-  /* SUCCESS STATE */
   .success-msg {
     display: none;
-    padding: 28px 0;
+    padding: 28px 0 28px 20px;
+    border-left: 2px solid var(--gold);
   }
-
-  .success-msg.show { display: block; }
-  .form-section.hidden { display: none; }
-
-  .success-msg p {
+  .success-msg h3 {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
+    font-size: 26px;
+    letter-spacing: 0.06em;
     color: var(--gold);
-    letter-spacing: 0.1em;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
-
-  .success-msg span {
-    font-size: 13px;
-    color: var(--muted);
-    font-weight: 300;
-    letter-spacing: 0.05em;
-  }
-
-  /* STATS */
-  .stats {
-    display: flex;
-    gap: 48px;
-    margin-top: 56px;
-    padding-top: 40px;
-    border-top: 1px solid rgba(201,168,76,0.1);
-    opacity: 0;
-    animation: fadeUp 1s ease forwards 1s;
-  }
-
-  .stat-item {}
-
-  .stat-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px;
-    color: var(--gold);
-    letter-spacing: 0.05em;
-    line-height: 1;
-  }
-
-  .stat-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-top: 4px;
-  }
-
-  /* FOOTER */
+  .success-msg p { font-size: 14px; font-weight: 300; color: var(--muted); }
   footer {
-    padding: 32px 0;
+    border-top: 1px solid rgba(201,168,76,0.08);
+    padding: 28px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid rgba(201,168,76,0.08);
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards 1.2s;
   }
-
   .footer-copy {
-    font-size: 11px;
-    color: rgba(240,237,230,0.2);
-    letter-spacing: 0.1em;
-    font-weight: 300;
-  }
-
-  .footer-tag {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 11px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold-dim);
   }
-
-  /* Decorative vertical text */
+  .line-accent {
+    position: fixed;
+    left: 0; top: 15%;
+    width: 3px; height: 30%;
+    background: linear-gradient(180deg, transparent, var(--gold), transparent);
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 2;
+  }
   .vert-text {
     position: fixed;
-    right: 28px;
-    top: 50%;
+    right: 28px; top: 50%;
     transform: translateY(-50%) rotate(90deg);
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 10px;
     letter-spacing: 0.35em;
     text-transform: uppercase;
-    color: rgba(201,168,76,0.2);
+    color: rgba(201,168,76,0.18);
     white-space: nowrap;
     z-index: 2;
     pointer-events: none;
   }
-
-  /* Gold line left accent */
-  .line-accent {
-    position: fixed;
-    left: 0;
-    top: 15%;
-    width: 3px;
-    height: 30%;
-    background: linear-gradient(180deg, transparent, var(--gold), transparent);
-    opacity: 0.4;
-    pointer-events: none;
-    z-index: 2;
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* Cursor dot */
   .cursor-dot {
     position: fixed;
-    width: 6px;
-    height: 6px;
+    width: 6px; height: 6px;
     background: var(--gold);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
-    transition: transform 0.1s ease;
+    transition: transform 0.08s ease;
   }
-
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
   @media (max-width: 600px) {
     .form-row { grid-template-columns: 1fr; }
-    .stats { gap: 28px; flex-wrap: wrap; }
-    .vert-text { display: none; }
+    .stats { gap: 28px; }
+    .vert-text, .line-accent { display: none; }
     nav { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .benefits-grid { grid-template-columns: 1fr; }
+    .benefit-card { padding: 28px 22px; }
   }
 </style>
 </head>
 <body>
-
 <div class="cursor-dot" id="cursor"></div>
 <div class="line-accent"></div>
 <div class="vert-text">Digital Dining Intelligence — M3NUX Systems</div>
-
 <div class="wrapper">
-
   <nav>
-    <img src="logoo.png" alt="M3NUX" style="height: 120px; object-fit: contain;">
+    <div class="nav-logo">M3NUX</div>
     <div class="nav-tag">Digital Dining Intelligence</div>
   </nav>
-
   <main class="hero">
     <div class="eyebrow">Redefining the dining experience</div>
-
     <h1>Your guest<span>already knows.</span></h1>
-
     <p class="sub">Before your server arrives — the decision is made. M3NUX transforms how restaurants communicate with their guests.</p>
-
     <div class="divider"></div>
-
-    <div class="form-section" id="formSection">
-      <span class="form-label">Request a private demo</span>
+    <div class="stats">
+      <div class="stat-item">
+        <span class="stat-value">↑</span>
+        <span class="stat-label">Average Check</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">↑</span>
+        <span class="stat-label">Guest Confidence</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">0</span>
+        <span class="stat-label">Operational Changes</span>
+      </div>
+    </div>
+  </main>
+  <section class="section reveal">
+    <div class="section-label">Why Restaurants Choose M3NUX</div>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">◈</div>
+        <div class="benefit-title">Increase Average Check</div>
+        <p class="benefit-desc">Guide guests toward premium and high-margin items — without a word from your staff.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">◎</div>
+        <div class="benefit-title">Improve Guest Confidence</div>
+        <p class="benefit-desc">Reduce uncertainty and ordering hesitation before the server ever arrives.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">▣</div>
+        <div class="benefit-title">Reduce Menu Friction</div>
+        <p class="benefit-desc">Present information visually — instead of overwhelming guests with dense, unnavigable text.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">◆</div>
+        <div class="benefit-title">Elevate Brand Perception</div>
+        <p class="benefit-desc">Create a premium digital dining experience that matches the level of your food.</p>
+      </div>
+    </div>
+  </section>
+  <section class="section reveal">
+    <div class="section-label">See It in Action</div>
+    <div class="video-wrap">
+      <video controls preload="metadata">
+        <source src="M3NUX.mp4" type="video/mp4">
+      </video>
+    </div>
+    <p class="video-caption">M3NUX — 45 second overview</p>
+  </section>
+  <section class="demo-section reveal" id="demo">
+    <div class="section-label">Request Access</div>
+    <h2 class="demo-headline">Ready to see<span> M3NUX</span><br>at your restaurant?</h2>
+    <p class="demo-sub">Private demos are tailored to your concept. No commitment. No template.</p>
+    <div id="formSection">
       <div class="form-row">
         <div class="input-wrap">
           <input type="text" id="name" placeholder="Your name" autocomplete="off">
@@ -408,75 +407,45 @@
       <div class="input-wrap" style="margin-bottom:12px;">
         <input type="email" id="email" placeholder="Email address" autocomplete="off">
       </div>
-      <button class="btn" onclick="handleSubmit()">Request Demo →</button>
+      <button class="btn" onclick="handleSubmit()">Request Private Demo →</button>
       <p class="form-note">No commitment. Private demo tailored to your restaurant.</p>
     </div>
-
     <div class="success-msg" id="successMsg">
-      <p>You're on the list.</p>
-      <span>We'll reach out within 48 hours to schedule your private demo.</span>
+      <h3>You're on the list.</h3>
+      <p>We'll reach out within 48 hours to schedule your private demo.</p>
     </div>
-
-    <div class="stats">
-      <div class="stat-item">
-        <div class="stat-num">↓</div>
-        <div class="stat-label">Decision time at table</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">↑</div>
-        <div class="stat-label">Guest confidence</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">0</div>
-        <div class="stat-label">Operational changes needed</div>
-      </div>
-    </div>
-  </main>
-
-  <footer>
-    <div class="footer-copy">© 2025 M3NUX. All rights reserved.</div>
-    <div class="footer-tag">Est. 2025</div>
-  </footer>
-
+  </section>
 </div>
-
+<div class="wrapper">
+  <footer>
+    <span class="footer-copy">© 2025 M3NUX. All rights reserved.</span>
+    <span class="footer-copy">Est. 2025</span>
+  </footer>
+</div>
 <script>
   const cursor = document.getElementById('cursor');
   document.addEventListener('mousemove', e => {
     cursor.style.left = e.clientX + 'px';
     cursor.style.top = e.clientY + 'px';
   });
-
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
   function handleSubmit() {
     const name = document.getElementById('name').value.trim();
     const restaurant = document.getElementById('restaurant').value.trim();
     const email = document.getElementById('email').value.trim();
-
-    if (!name || !restaurant || !email) {
-      const btn = document.querySelector('.btn');
-      btn.textContent = 'Fill all fields →';
-      setTimeout(() => btn.textContent = 'Request Demo →', 2000);
-      return;
-    }
-
-    const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailReg.test(email)) {
-      const btn = document.querySelector('.btn');
-      btn.textContent = 'Check your email →';
-      setTimeout(() => btn.textContent = 'Request Demo →', 2000);
-      return;
-    }
-
-    document.getElementById('formSection').classList.add('hidden');
-    document.getElementById('successMsg').classList.add('show');
-
-    fetch('https://formspree.io/f/mnjordyd', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, restaurant, email })
-    });
+    if (!name || !restaurant || !email) return;
+    document.getElementById('formSection').style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
   }
 </script>
-
 </body>
 </html>
