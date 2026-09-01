@@ -4,664 +4,367 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>M3NUX — Digital Dining Intelligence</title>
+<meta name="description" content="M3NUX is Digital Dining Intelligence. The experience layer between seeing the menu and speaking to your server. Discover. Understand. Decide.">
+<meta property="og:title" content="M3NUX — Digital Dining Intelligence">
+<meta property="og:description" content="The space between seeing the menu and speaking to your server, redesigned.">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --ink:    #070706;
-  --deep:   #0b0a08;
-  --surface:#111009;
-  --panel:  #17140e;
-  --gold:   #c4a24a;
-  --gold-d: rgba(196,162,74,.22);
-  --cream:  #ede5d4;
-  --c60:    rgba(237,229,212,.6);
-  --c30:    rgba(237,229,212,.3);
-  --c12:    rgba(237,229,212,.12);
-  --ease:   cubic-bezier(.22,1,.36,1);
+:root{
+  --ink:#070706;--deep:#0b0a08;--surface:#111009;--panel:#17140e;
+  --gold:#c4a24a;--gold-d:rgba(196,162,74,.22);--gold-lo:rgba(196,162,74,.09);
+  --cream:#ede5d4;--c60:rgba(237,229,212,.6);--c30:rgba(237,229,212,.3);--c12:rgba(237,229,212,.12);
+  --ease:cubic-bezier(.22,1,.36,1);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{
-  background:var(--ink);color:var(--cream);
-  font-family:'Outfit',system-ui,sans-serif;
-  font-size:14px;line-height:1.65;
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;
-}
+body{background:var(--ink);color:var(--cream);font-family:'Outfit',system-ui,sans-serif;font-size:14px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;max-width:100%}
 button{border:none;background:none;cursor:pointer;font:inherit;color:inherit}
 a{text-decoration:none;color:inherit}
 :focus-visible{outline:1.5px solid var(--gold);outline-offset:3px}
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   NAV
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.nav{
-  position:fixed;inset:0 0 auto;z-index:100;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:20px 48px;
-  border-bottom:1px solid transparent;
-  transition:background .5s var(--ease),padding .3s var(--ease),border-color .4s;
-}
-.nav.scrolled{
-  background:rgba(7,7,6,.93);
-  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
-  border-bottom-color:rgba(196,162,74,.1);
-  padding:14px 48px;
-}
-.nav__logo{display:flex;align-items:center;}
-.nav__logo img{
-  height:52px;width:auto;
-  filter:drop-shadow(0 0 8px rgba(196,162,74,.2));
-}
+/* NAV */
+.nav{position:fixed;inset:0 0 auto;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;border-bottom:1px solid transparent;transition:background .5s var(--ease),padding .3s var(--ease),border-color .4s}
+.nav.scrolled{background:rgba(7,7,6,.93);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom-color:rgba(196,162,74,.1);padding:14px 48px}
+.nav__logo img{height:48px;width:auto;filter:drop-shadow(0 0 8px rgba(196,162,74,.2))}
 .nav__links{display:flex;align-items:center;gap:36px}
-.nav__link{
-  font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--c30);transition:color .2s;
-}
+.nav__link{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(237,229,212,.45);transition:color .2s}
 .nav__link:hover{color:var(--cream)}
-.nav__cta{
-  font-size:9.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--gold);border:1px solid rgba(196,162,74,.35);padding:10px 24px;
-  transition:background .2s,color .2s,border-color .2s;
-}
+.nav__cta{font-size:9.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(196,162,74,.35);padding:10px 24px;transition:background .2s,color .2s,border-color .2s}
 .nav__cta:hover{background:var(--gold);color:var(--ink);border-color:var(--gold)}
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   HERO
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.hero{
-  position:relative;height:100vh;min-height:680px;
-  display:grid;grid-template-columns:1fr 1fr;overflow:hidden;
-}
-.hero__left{
-  position:relative;z-index:3;
-  display:flex;flex-direction:column;justify-content:flex-end;
-  padding:0 56px 80px 64px;
-  background:linear-gradient(135deg,var(--ink) 0%,rgba(11,10,8,.97) 55%,rgba(11,10,8,.88) 100%);
-}
-.hero__eyebrow{
-  font-size:9px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:22px;
-  display:flex;align-items:center;gap:14px;opacity:.85;
-}
+/* HERO */
+.hero{position:relative;height:100vh;min-height:680px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
+.hero__left{position:relative;z-index:3;display:flex;flex-direction:column;justify-content:flex-end;padding:0 56px 80px 64px;background:linear-gradient(135deg,var(--ink) 0%,rgba(11,10,8,.97) 55%,rgba(11,10,8,.88) 100%)}
+.hero__eyebrow{font-size:9px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;display:flex;align-items:center;gap:14px;opacity:.85}
 .hero__eyebrow::before{content:'';display:block;width:22px;height:1px;background:var(--gold)}
 .hero__title{margin-bottom:28px;line-height:.92}
-.hero__t-sans{
-  display:block;
-  font-family:'Outfit',system-ui,sans-serif;
-  font-size:clamp(38px,4.8vw,64px);
-  font-weight:300;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--cream);
-}
-.hero__t-serif{
-  display:block;
-  font-family:'Cormorant',Georgia,serif;
-  font-size:clamp(52px,6.8vw,90px);
-  font-weight:600;letter-spacing:-.01em;
-  color:#fff;line-height:.9;
-}
-.hero__t-serif em{
-  font-style:italic;font-weight:300;color:var(--gold);
-}
-.hero__sub{
-  font-size:13.5px;font-weight:300;color:var(--c60);
-  line-height:1.8;margin-bottom:44px;max-width:290px;
-}
+.hero__t-sans{display:block;font-family:'Outfit',system-ui,sans-serif;font-size:clamp(38px,4.8vw,64px);font-weight:300;letter-spacing:.08em;text-transform:uppercase;color:var(--cream)}
+.hero__t-serif{display:block;font-family:'Cormorant',Georgia,serif;font-size:clamp(52px,6.8vw,90px);font-weight:600;letter-spacing:-.01em;color:#fff;line-height:.9}
+.hero__t-serif em{font-style:italic;font-weight:300;color:var(--gold)}
+.hero__sub{font-size:13.5px;font-weight:300;color:var(--c60);line-height:1.8;margin-bottom:44px;max-width:290px}
 .hero__actions{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
-.hero__cta-p{
-  display:inline-flex;flex-direction:column;align-items:flex-start;gap:10px;
-  font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);
-}
+.hero__cta-p{display:inline-flex;flex-direction:column;align-items:flex-start;gap:10px;font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
 .hero__cta-p:hover .hero__cta-line{height:28px;opacity:1}
-.hero__cta-line{
-  display:block;width:1px;height:20px;
-  background:var(--gold);opacity:.55;
-  transition:height .3s var(--ease),opacity .3s;
-}
-.hero__cta-s{
-  font-size:9.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--c30);border:1px solid var(--c12);padding:9px 20px;
-  transition:color .2s,border-color .2s;
-}
+.hero__cta-line{display:block;width:1px;height:20px;background:var(--gold);opacity:.55;transition:height .3s var(--ease),opacity .3s}
+.hero__cta-s{font-size:9.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--c30);border:1px solid var(--c12);padding:9px 20px;transition:color .2s,border-color .2s}
 .hero__cta-s:hover{color:var(--cream);border-color:var(--c30)}
 .hero__right{position:relative;overflow:hidden}
-.hero__photo{
-  position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;object-position:center;
-  filter:brightness(.68) saturate(.82);
-  transition:transform 9s ease;
-}
+.hero__photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.68) saturate(.82);transition:transform 9s ease}
 .hero:hover .hero__photo{transform:scale(1.025)}
-.hero__right::before{
-  content:'';position:absolute;inset:0;left:-1px;z-index:1;pointer-events:none;
-  background:linear-gradient(90deg,var(--ink) 0%,rgba(7,7,6,.42) 22%,transparent 58%);
-}
-.hero__right::after{
-  content:'';position:absolute;inset:auto 0 0;height:38%;z-index:1;pointer-events:none;
-  background:linear-gradient(0deg,var(--ink) 0%,transparent 100%);
-}
-.hero__scroll{
-  position:absolute;bottom:42px;left:50%;transform:translateX(-50%);
-  z-index:5;display:flex;flex-direction:column;align-items:center;gap:8px;
-  opacity:.45;pointer-events:none;
-}
-.hero__scroll-track{
-  width:1px;height:44px;
-  background:linear-gradient(0deg,var(--gold) 0%,transparent 100%);
-  position:relative;
-}
-.hero__scroll-track::before{
-  content:'';position:absolute;top:0;left:-3px;
-  width:7px;height:7px;border-radius:50%;background:var(--gold);
-  animation:trackDot 2.4s ease-in-out infinite;
-}
-@keyframes trackDot{
-  0%{top:0;opacity:1} 100%{top:38px;opacity:0}
-}
-.hero__scroll-txt{
-  font-size:7px;letter-spacing:.26em;text-transform:uppercase;
-  color:var(--gold);text-align:center;line-height:1.5;
-}
-.hero__seam{
-  position:absolute;bottom:0;left:0;right:0;height:1px;z-index:10;
-  background:linear-gradient(90deg,transparent,var(--gold-d) 25%,var(--gold) 50%,var(--gold-d) 75%,transparent);
-}
+.hero__right::before{content:'';position:absolute;inset:0;left:-1px;z-index:1;pointer-events:none;background:linear-gradient(90deg,var(--ink) 0%,rgba(7,7,6,.42) 22%,transparent 58%)}
+.hero__right::after{content:'';position:absolute;inset:auto 0 0;height:38%;z-index:1;pointer-events:none;background:linear-gradient(0deg,var(--ink) 0%,transparent 100%)}
+.hero__scroll{position:absolute;bottom:42px;left:50%;transform:translateX(-50%);z-index:5;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.45;pointer-events:none}
+.hero__scroll-track{width:1px;height:44px;background:linear-gradient(0deg,var(--gold) 0%,transparent 100%);position:relative}
+.hero__scroll-track::before{content:'';position:absolute;top:0;left:-3px;width:7px;height:7px;border-radius:50%;background:var(--gold);animation:trackDot 2.4s ease-in-out infinite}
+@keyframes trackDot{0%{top:0;opacity:1}100%{top:38px;opacity:0}}
+.hero__scroll-txt{font-size:7px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);text-align:center;line-height:1.5}
+.hero__seam{position:absolute;bottom:0;left:0;right:0;height:1px;z-index:10;background:linear-gradient(90deg,transparent,var(--gold-d) 25%,var(--gold) 50%,var(--gold-d) 75%,transparent)}
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   EXPERIENCE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.experience{background:var(--deep);position:relative;padding-bottom:60px}
-.experience::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,var(--gold-d) 30%,var(--gold) 50%,var(--gold-d) 70%,transparent);
-}
-.exp__table{
-  padding:32px 52px 0;
-  display:flex;align-items:center;gap:10px;
-}
+/* EXPERIENCE */
+.experience{background:var(--deep);position:relative;padding-bottom:52px}
+.experience::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold-d) 30%,var(--gold) 50%,var(--gold-d) 70%,transparent)}
+.exp__table{padding:28px 52px 0;display:flex;align-items:center;gap:10px}
 .exp__table-icon{color:var(--gold);opacity:.6}
 .exp__table-rule{flex:0 0 24px;height:1px;background:var(--gold);opacity:.35}
-.exp__table-lbl{
-  font-size:8.5px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;
-  color:var(--gold);opacity:.7;
-}
-.exp__q{text-align:center;padding:38px 24px 36px}
-.exp__q-text{
-  font-family:'Cormorant',Georgia,serif;
-  font-size:clamp(28px,3.8vw,48px);
-  font-weight:400;color:#fff;letter-spacing:-.01em;
-}
-.exp__q-rule{width:36px;height:1px;background:var(--gold);margin:14px auto 0;opacity:.4}
+.exp__table-lbl{font-size:8.5px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);opacity:.7}
+.exp__q{text-align:center;padding:32px 24px 28px}
+.exp__q-text{font-family:'Cormorant',Georgia,serif;font-size:clamp(28px,3.8vw,48px);font-weight:400;color:#fff;letter-spacing:-.01em}
+.exp__q-rule{width:36px;height:1px;background:var(--gold);margin:12px auto 0;opacity:.4}
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   CARDS — horizontal drag scroll
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.cards-wrap{
-  position:relative;padding:0 52px;overflow:hidden;
-}
-/* Right fade hint */
-.cards-wrap::after{
-  content:'';pointer-events:none;
-  position:absolute;top:0;right:52px;bottom:0;width:130px;
-  background:linear-gradient(90deg,transparent,var(--deep) 90%);
-  z-index:2;
-}
-.cards-track{
-  display:flex;gap:10px;
-  overflow-x:auto;
-  scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch;
-  scrollbar-width:none;
-  padding-bottom:2px;
-  cursor:grab;
-  user-select:none;
-}
+/* CARDS */
+.cards-wrap{position:relative;padding:0 52px;overflow:hidden}
+.cards-wrap::after{content:'';pointer-events:none;position:absolute;top:0;right:52px;bottom:0;width:130px;background:linear-gradient(90deg,transparent,var(--deep) 90%);z-index:2}
+.cards-track{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px;cursor:grab;user-select:none}
 .cards-track:active{cursor:grabbing}
 .cards-track::-webkit-scrollbar{display:none}
-
-.cat-card{
-  flex:0 0 22vw;min-width:190px;max-width:310px;
-  scroll-snap-align:start;
-  position:relative;border-radius:6px;overflow:hidden;
-  aspect-ratio:.62;background:var(--surface);cursor:pointer;
-  transition:transform .3s var(--ease),box-shadow .3s,flex-basis .4s var(--ease),opacity .4s,filter .4s;
-}
+.cat-card{flex:0 0 22vw;min-width:190px;max-width:310px;scroll-snap-align:start;position:relative;border-radius:6px;overflow:hidden;aspect-ratio:.62;background:var(--surface);cursor:pointer;transition:transform .3s var(--ease),box-shadow .3s,flex-basis .4s var(--ease),opacity .4s,filter .4s}
 .cat-card:focus-visible{outline:1.5px solid var(--gold);outline-offset:2px}
 .cat-card:hover{transform:translateY(-4px);box-shadow:0 20px 56px rgba(0,0,0,.6)}
 .cat-card[data-cat="special"]{flex-basis:24vw}
 .cat-card.receded{opacity:.25;filter:brightness(.45) saturate(.5);transform:scale(.96)}
 .cat-card.active{flex-basis:28vw;box-shadow:0 24px 64px rgba(0,0,0,.7)}
-.cat-card__img{
-  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  transition:transform .5s var(--ease),filter .3s;
-  filter:brightness(.72) saturate(.88);
-}
+.cat-card__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease),filter .3s;filter:brightness(.72) saturate(.88)}
 .cat-card:hover .cat-card__img{transform:scale(1.05);filter:brightness(.82) saturate(.96)}
 .cat-card.active .cat-card__img{filter:brightness(.88) saturate(1.02)}
-.cat-card__grad{
-  position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(7,7,6,0) 25%,rgba(7,7,6,.28) 55%,rgba(7,7,6,.9) 100%);
-}
-.cat-card__dot{
-  position:absolute;top:14px;right:14px;
-  width:5px;height:5px;border-radius:50%;
-  background:var(--gold);z-index:3;opacity:0;transition:opacity .3s;
-}
+.cat-card__grad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,7,6,0) 25%,rgba(7,7,6,.28) 55%,rgba(7,7,6,.9) 100%)}
+.cat-card__dot{position:absolute;top:14px;right:14px;width:5px;height:5px;border-radius:50%;background:var(--gold);z-index:3;opacity:0}
 .cat-card[data-cat="special"] .cat-card__dot{opacity:1}
-.cat-card__info{
-  position:absolute;bottom:0;left:0;right:0;
-  padding:20px 18px;z-index:2;
-}
-.cat-card__name{
-  font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
-  color:#fff;margin-bottom:5px;line-height:1.3;
-}
+.cat-card__info{position:absolute;bottom:0;left:0;right:0;padding:18px 16px;z-index:2}
+.cat-card__name{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#fff;margin-bottom:4px;line-height:1.3}
 .cat-card[data-cat="special"] .cat-card__name{color:var(--gold)}
 .cat-card__sub{font-size:10px;font-weight:300;color:var(--c60);letter-spacing:.02em}
-.cat-card__line{
-  position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);
-  transform:scaleX(0);transform-origin:left;
-  transition:transform .35s var(--ease);
-}
+.cat-card__line{position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
 .cat-card.active .cat-card__line{transform:scaleX(1)}
 .cat-card:hover .cat-card__line{transform:scaleX(.4)}
-
-.exp__explore{text-align:center;padding:22px 0 0}
-.exp__explore a{
-  font-size:11px;font-weight:300;letter-spacing:.08em;
-  color:var(--gold);opacity:.5;
-  display:inline-flex;align-items:center;gap:10px;
-  transition:opacity .2s,gap .2s;
-}
+.exp__explore{text-align:center;padding:18px 0 0}
+.exp__explore a{font-size:11px;font-weight:300;letter-spacing:.08em;color:var(--gold);opacity:.5;display:inline-flex;align-items:center;gap:10px;transition:opacity .2s,gap .2s}
 .exp__explore a:hover{opacity:.85;gap:16px}
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   SELECTION MOMENT
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.sel-moment{
-  position:fixed;inset:0;z-index:200;
-  display:flex;align-items:center;justify-content:center;
-  background:rgba(7,7,6,.82);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
-  opacity:0;pointer-events:none;
-  transition:opacity .4s;
-}
+/* SELECTION MOMENT */
+.sel-moment{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;background:rgba(7,7,6,.82);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .4s}
 .sel-moment.on{opacity:1;pointer-events:auto}
-.sel-txt{
-  font-family:'Cormorant',Georgia,serif;
-  font-size:clamp(40px,5.5vw,68px);
-  font-weight:300;font-style:italic;color:var(--cream);text-align:center;
-  opacity:0;transform:translateY(10px);
-  transition:opacity .55s var(--ease) .12s,transform .55s var(--ease) .12s;
-}
+.sel-txt{font-family:'Cormorant',Georgia,serif;font-size:clamp(40px,5.5vw,68px);font-weight:300;font-style:italic;color:var(--cream);text-align:center;opacity:0;transform:translateY(10px);transition:opacity .55s var(--ease) .12s,transform .55s var(--ease) .12s}
 .sel-moment.on .sel-txt{opacity:1;transform:none}
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   DISCOVERY
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* DISCOVERY */
 .discovery{background:var(--deep);display:none;border-top:1px solid rgba(196,162,74,.07)}
 .discovery.on{display:block}
-.disc__hero{position:relative;height:72vh;min-height:500px;overflow:hidden}
-.disc__img{
-  width:100%;height:100%;object-fit:cover;object-position:center 25%;
-  filter:brightness(.6) saturate(.82);
-}
-.disc__hero::before{
-  content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(90deg,
-    rgba(11,10,8,.97) 0%,
-    rgba(11,10,8,.72) 38%,
-    rgba(11,10,8,.18) 70%,
-    transparent 100%);
-}
-.disc__hero::after{
-  content:'';position:absolute;inset:auto 0 0;height:32%;z-index:1;pointer-events:none;
-  background:linear-gradient(0deg,var(--deep) 0%,transparent 100%);
-}
-.disc__copy{
-  position:absolute;left:64px;top:50%;transform:translateY(-50%);
-  z-index:3;max-width:400px;
-}
-.disc__lbl{
-  font-size:8.5px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;
-  color:var(--gold);opacity:.8;margin-bottom:18px;
-}
-.disc__name{
-  font-family:'Cormorant',Georgia,serif;
-  font-size:clamp(44px,5.5vw,72px);
-  font-weight:600;line-height:.88;letter-spacing:-.015em;
-  color:#fff;margin-bottom:14px;
-}
-.disc__components{
-  font-size:12.5px;font-weight:300;color:var(--c60);letter-spacing:.07em;margin-bottom:22px;
-}
-.disc__tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px}
-.disc__tag{
-  font-size:8px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--gold);border:1px solid rgba(196,162,74,.28);padding:5px 11px;
-}
-.disc__price{
-  font-family:'Cormorant',Georgia,serif;font-size:26px;font-weight:300;
-  color:var(--c60);margin-bottom:22px;
-}
-.disc__rem{
-  display:inline-flex;align-items:center;gap:9px;
-  font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--c60);cursor:pointer;background:none;border:none;padding:0;
-  transition:color .2s;
-}
+.disc__hero{position:relative;height:70vh;min-height:480px;overflow:hidden}
+.disc__img{width:100%;height:100%;object-fit:cover;object-position:center 25%;filter:brightness(.6) saturate(.82)}
+.disc__hero::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(11,10,8,.97) 0%,rgba(11,10,8,.72) 38%,rgba(11,10,8,.18) 70%,transparent 100%)}
+.disc__hero::after{content:'';position:absolute;inset:auto 0 0;height:30%;z-index:1;pointer-events:none;background:linear-gradient(0deg,var(--deep) 0%,transparent 100%)}
+.disc__copy{position:absolute;left:64px;top:50%;transform:translateY(-50%);z-index:3;max-width:400px}
+.disc__lbl{font-size:8.5px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);opacity:.8;margin-bottom:16px}
+.disc__name{font-family:'Cormorant',Georgia,serif;font-size:clamp(44px,5.5vw,72px);font-weight:600;line-height:.88;letter-spacing:-.015em;color:#fff;margin-bottom:12px}
+.disc__components{font-size:12.5px;font-weight:300;color:var(--c60);letter-spacing:.07em;margin-bottom:20px}
+.disc__tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+.disc__tag{font-size:8px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(196,162,74,.28);padding:5px 11px}
+.disc__price{font-family:'Cormorant',Georgia,serif;font-size:26px;font-weight:300;color:var(--c60);margin-bottom:20px}
+.disc__rem{display:inline-flex;align-items:center;gap:9px;font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--c60);cursor:pointer;background:none;border:none;padding:0;transition:color .2s}
 .disc__rem:hover{color:var(--gold)}
 .disc__rem.saved{color:var(--gold)}
 .disc__heart{font-size:13px;transition:transform .25s var(--ease)}
 .disc__rem:hover .disc__heart{transform:scale(1.25)}
-
 .disc__more{display:grid;grid-template-columns:1fr 1fr;gap:2px}
-.disc__sec{
-  position:relative;height:210px;overflow:hidden;cursor:pointer;background:var(--surface);
-}
+.disc__sec{position:relative;height:200px;overflow:hidden;cursor:pointer;background:var(--surface)}
 .disc__sec:hover .disc__sec-img{transform:scale(1.04);filter:brightness(.78)}
-.disc__sec-img{
-  width:100%;height:100%;object-fit:cover;
-  filter:brightness(.52) saturate(.78);
-  transition:transform .4s var(--ease),filter .3s;
-}
-.disc__sec::after{
-  content:'';position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(0deg,rgba(11,10,8,.88) 0%,transparent 58%);
-}
-.disc__sec-info{
-  position:absolute;bottom:0;left:0;right:0;padding:18px 24px;z-index:2;
-  display:flex;justify-content:space-between;align-items:flex-end;
-}
+.disc__sec-img{width:100%;height:100%;object-fit:cover;filter:brightness(.52) saturate(.78);transition:transform .4s var(--ease),filter .3s}
+.disc__sec::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,rgba(11,10,8,.88) 0%,transparent 58%)}
+.disc__sec-info{position:absolute;bottom:0;left:0;right:0;padding:16px 22px;z-index:2;display:flex;justify-content:space-between;align-items:flex-end}
 .disc__sec-name{font-family:'Cormorant',Georgia,serif;font-size:18px;font-weight:500;color:#fff}
 .disc__sec-sub{font-size:11px;font-weight:300;color:var(--c30);margin-top:2px}
 .disc__sec-price{font-size:15px;color:var(--c60)}
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   PICKS TOAST
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.picks-toast{
-  position:fixed;bottom:36px;left:50%;
-  transform:translateX(-50%) translateY(14px);
-  background:var(--panel);border-top:1px solid var(--gold);
-  padding:14px 28px;min-width:240px;
-  opacity:0;pointer-events:none;
-  transition:opacity .35s var(--ease),transform .35s var(--ease);
-  z-index:180;text-align:center;
-}
+/* PICKS TOAST */
+.picks-toast{position:fixed;bottom:36px;left:50%;transform:translateX(-50%) translateY(14px);background:var(--panel);border-top:1px solid var(--gold);padding:14px 28px;min-width:240px;opacity:0;pointer-events:none;transition:opacity .35s var(--ease),transform .35s var(--ease);z-index:180;text-align:center}
 .picks-toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
-.picks-lbl{
-  font-size:8px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:8px;
-}
-.picks-item{
-  font-family:'Cormorant',Georgia,serif;font-size:16px;font-weight:300;color:var(--cream);
-}
+.picks-lbl{font-size:8px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.picks-item{font-family:'Cormorant',Georgia,serif;font-size:16px;font-weight:300;color:var(--cream)}
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   SERVICE RAIL
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.svc-rail{
-  position:fixed;right:0;top:50%;
-  transform:translateY(-50%) translateX(8px);
-  z-index:150;
-  background:rgba(17,14,9,.95);
-  border:1px solid rgba(196,162,74,.13);border-right:none;
-  opacity:0;pointer-events:none;
-  transition:opacity .4s var(--ease),transform .4s var(--ease);
-}
+/* SERVICE RAIL */
+.svc-rail{position:fixed;right:0;top:50%;transform:translateY(-50%) translateX(8px);z-index:150;background:rgba(17,14,9,.95);border:1px solid rgba(196,162,74,.13);border-right:none;opacity:0;pointer-events:none;transition:opacity .5s var(--ease),transform .5s var(--ease)}
 .svc-rail.on{opacity:1;pointer-events:auto;transform:translateY(-50%) translateX(0)}
-.svc-need{
-  font-size:6.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--gold);opacity:.55;
-  padding:12px 14px 8px;border-bottom:1px solid rgba(196,162,74,.08);text-align:center;
-}
-.svc-btn{
-  display:flex;flex-direction:column;align-items:center;gap:5px;
-  padding:11px 16px;cursor:pointer;
-  border-bottom:1px solid rgba(196,162,74,.06);
-  transition:background .15s;width:100%;
-}
+.svc-rail.hidden{opacity:0;pointer-events:none;transform:translateY(-50%) translateX(20px)}
+.svc-need{font-size:6.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);opacity:.55;padding:12px 14px 8px;border-bottom:1px solid rgba(196,162,74,.08);text-align:center}
+.svc-btn{display:flex;flex-direction:column;align-items:center;gap:5px;padding:11px 16px;cursor:pointer;border-bottom:1px solid rgba(196,162,74,.06);transition:background .15s;width:100%}
 .svc-btn:last-child{border-bottom:none}
 .svc-btn:hover{background:rgba(196,162,74,.055)}
 .svc-btn svg{width:17px;height:17px;color:var(--cream);opacity:.5;transition:opacity .2s}
 .svc-btn:hover svg{opacity:.9}
-.svc-btn span{
-  font-size:7px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--c30);transition:color .2s;
-}
+.svc-btn span{font-size:7px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--c30);transition:color .2s}
 .svc-btn:hover span{color:var(--c60)}
-.svc-confirm{
-  position:fixed;top:86px;right:76px;
-  background:var(--panel);border-left:2px solid var(--gold);
-  padding:12px 18px;z-index:160;
-  opacity:0;pointer-events:none;transform:translateX(10px);
-  transition:opacity .25s var(--ease),transform .25s var(--ease);
-  max-width:200px;
-}
+.svc-confirm{position:fixed;top:86px;right:76px;background:var(--panel);border-left:2px solid var(--gold);padding:12px 18px;z-index:160;opacity:0;pointer-events:none;transform:translateX(10px);transition:opacity .25s var(--ease),transform .25s var(--ease);max-width:200px}
 .svc-confirm.on{opacity:1;transform:none;pointer-events:auto}
-.svc-msg{
-  font-family:'Cormorant',Georgia,serif;
-  font-size:15px;font-weight:300;font-style:italic;color:#fff;
-}
+.svc-msg{font-family:'Cormorant',Georgia,serif;font-size:15px;font-weight:300;font-style:italic;color:#fff}
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   MOBILE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* REALIZATION */
+.realization{background:var(--ink);padding:112px 64px;text-align:center;overflow:hidden}
+.real__headline{font-family:'Cormorant',Georgia,serif;font-size:clamp(40px,6vw,80px);font-weight:600;color:#fff;letter-spacing:-.02em;line-height:.9;margin-bottom:56px}
+.real__headline em{font-style:normal;color:var(--gold)}
+.real__items{display:flex;flex-direction:column;gap:0;max-width:560px;margin:0 auto 64px}
+.real__item{font-size:clamp(14px,1.8vw,18px);font-weight:300;color:var(--c60);padding:18px 0;border-bottom:1px solid rgba(196,162,74,.08);letter-spacing:.04em;opacity:0;transform:translateY(14px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.real__item.revealed{opacity:1;transform:none}
+.real__item::before{content:'—';margin-right:12px;color:var(--gold);opacity:.5}
+.real__closing{font-family:'Cormorant',Georgia,serif;font-size:clamp(26px,3.8vw,48px);font-weight:500;font-style:italic;color:#fff;opacity:0;transform:translateY(14px);transition:opacity .7s var(--ease) .3s,transform .7s var(--ease) .3s}
+.real__closing.revealed{opacity:1;transform:none}
+
+/* PROBLEM */
+.problem{background:var(--deep);padding:112px 64px;text-align:center}
+.problem__built{font-family:'Cormorant',Georgia,serif;font-size:clamp(34px,5vw,66px);font-weight:600;color:#fff;line-height:.92;letter-spacing:-.02em;margin-bottom:32px}
+.problem__not{font-family:'Cormorant',Georgia,serif;font-size:clamp(28px,4.2vw,58px);font-weight:300;font-style:italic;color:var(--gold);line-height:.95;letter-spacing:-.01em;margin-bottom:64px}
+.problem__flow{display:flex;align-items:center;justify-content:center;gap:20px;margin-bottom:44px;flex-wrap:wrap}
+.problem__step{font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--cream)}
+.problem__arrow{color:var(--gold);opacity:.5;font-size:16px}
+.problem__statement{font-family:'Cormorant',Georgia,serif;font-size:clamp(17px,2.2vw,24px);font-weight:400;color:var(--c60);max-width:520px;margin:0 auto;line-height:1.5}
+.problem__statement strong{color:var(--cream);font-weight:500}
+
+/* DECISION LAYER — journey style */
+.decision{background:var(--ink);padding:112px 64px}
+.decision__eyebrow{font-size:9px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);opacity:.8;margin-bottom:20px;text-align:center}
+.decision__title{font-family:'Cormorant',Georgia,serif;font-size:clamp(34px,4.8vw,64px);font-weight:600;color:#fff;letter-spacing:-.02em;text-align:center;margin-bottom:80px;line-height:.92}
+.journey{max-width:760px;margin:0 auto 72px;position:relative}
+.journey::before{content:'';position:absolute;left:28px;top:0;bottom:0;width:1px;background:linear-gradient(0deg,transparent 0%,rgba(196,162,74,.2) 15%,rgba(196,162,74,.2) 85%,transparent 100%)}
+.journey__item{display:grid;grid-template-columns:56px 1fr;gap:0;padding:0 0 52px 0;position:relative;opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.journey__item:last-child{padding-bottom:0}
+.journey__item.revealed{opacity:1;transform:none}
+.journey__num-wrap{display:flex;flex-direction:column;align-items:center;padding-top:4px}
+.journey__num{font-size:9px;font-weight:600;letter-spacing:.2em;color:var(--gold);opacity:.7;width:56px;text-align:center;position:relative;z-index:1}
+.journey__dot{width:7px;height:7px;border-radius:50%;background:var(--gold);opacity:.4;margin:8px auto 0;position:relative;z-index:1}
+.journey__item.revealed .journey__dot{opacity:1}
+.journey__content{padding-left:20px;border-left:none}
+.journey__name{font-family:'Cormorant',Georgia,serif;font-size:clamp(26px,3.2vw,40px);font-weight:600;color:#fff;margin-bottom:10px;letter-spacing:-.01em;line-height:1}
+.journey__desc{font-size:13px;font-weight:300;color:var(--c60);line-height:1.75;max-width:480px}
+.journey__arrow{font-size:20px;color:var(--gold);opacity:.35;margin:12px 0 0 56px;display:block}
+.journey__item:last-child .journey__arrow{display:none}
+.decision__closing{text-align:center}
+.decision__closing-text{font-family:'Cormorant',Georgia,serif;font-size:clamp(26px,3.8vw,46px);font-weight:500;color:var(--cream);line-height:1.1}
+.decision__closing-text span{display:block;color:var(--gold);font-style:italic;font-weight:300}
+
+/* HOSPITALITY */
+.hospitality{background:var(--deep);padding:112px 64px;text-align:center}
+.hosp__line1{font-family:'Cormorant',Georgia,serif;font-size:clamp(26px,4.2vw,54px);font-weight:600;color:#fff;letter-spacing:-.015em;margin-bottom:14px;line-height:.95}
+.hosp__line2{font-family:'Cormorant',Georgia,serif;font-size:clamp(22px,3.5vw,46px);font-weight:300;font-style:italic;color:var(--gold);letter-spacing:-.01em;line-height:.95}
+.hosp__divider{width:1px;height:64px;background:linear-gradient(0deg,transparent,var(--gold),transparent);margin:40px auto}
+
+/* BUSINESS VALUE — typographic, no boxes */
+.bizvalue{background:var(--ink);padding:112px 64px}
+.biz__seq{text-align:center;margin-bottom:80px}
+.biz__beautiful{font-family:'Cormorant',Georgia,serif;font-size:clamp(34px,5vw,68px);font-weight:600;color:#fff;letter-spacing:-.02em;line-height:.88;margin-bottom:10px}
+.biz__built{font-family:'Cormorant',Georgia,serif;font-size:clamp(30px,4.5vw,62px);font-weight:300;font-style:italic;color:var(--gold);letter-spacing:-.01em;line-height:.88}
+.biz__outcomes{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:0}
+.biz__outcome{padding:36px 0;border-bottom:1px solid rgba(196,162,74,.07);display:grid;grid-template-columns:80px 1fr;gap:0;align-items:start;opacity:0;transform:translateY(14px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.biz__outcome:last-child{border-bottom:none}
+.biz__outcome.revealed{opacity:1;transform:none}
+.biz__indicator{font-size:32px;font-weight:300;color:var(--gold);font-family:'Outfit',system-ui,sans-serif;line-height:1;padding-top:2px}
+.biz__right{}
+.biz__metric{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#fff;margin-bottom:10px}
+.biz__desc{font-size:13px;font-weight:300;color:var(--c60);line-height:1.75}
+
+/* KEEP YOUR */
+.keepyour{background:var(--deep);padding:112px 64px;text-align:center}
+.ky__title{font-size:9px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);opacity:.7;margin-bottom:40px}
+.ky__list{display:flex;flex-direction:column;gap:0;max-width:380px;margin:0 auto 72px}
+.ky__item{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid rgba(196,162,74,.08)}
+.ky__item-name{font-size:13px;font-weight:400;color:var(--c60);letter-spacing:.06em;text-transform:uppercase}
+.ky__check{color:var(--gold);font-size:16px}
+.ky__change{font-family:'Cormorant',Georgia,serif;font-size:clamp(40px,6vw,80px);font-weight:600;color:#fff;letter-spacing:-.02em;line-height:.9;margin-bottom:24px}
+.ky__change em{color:var(--gold);font-style:italic;font-weight:300}
+.ky__sub{font-size:13px;font-weight:300;color:var(--c60);max-width:420px;margin:0 auto;line-height:1.75}
+
+/* VIDEO */
+.video-sec{background:var(--ink);padding:112px 64px;text-align:center}
+.vid__eyebrow{font-size:9px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);opacity:.7;margin-bottom:20px}
+.vid__headline{font-family:'Cormorant',Georgia,serif;font-size:clamp(52px,8vw,108px);font-weight:600;color:#fff;letter-spacing:-.03em;line-height:.85;margin-bottom:14px}
+.vid__sub{font-size:13px;font-weight:300;color:var(--c60);margin-bottom:48px;line-height:1.7}
+.vid__player{position:relative;max-width:860px;margin:0 auto;background:var(--surface);border:1px solid rgba(196,162,74,.1)}
+.vid__player video{width:100%;display:block;max-height:484px;object-fit:cover}
+.vid__player-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(7,7,6,.45);transition:background .3s;cursor:pointer}
+.vid__player-overlay:hover{background:rgba(7,7,6,.25)}
+.vid__play{width:68px;height:68px;border:1px solid rgba(196,162,74,.5);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:border-color .2s,transform .2s}
+.vid__player-overlay:hover .vid__play{border-color:var(--gold);transform:scale(1.06)}
+.vid__play svg{width:20px;height:20px;color:var(--gold);margin-left:3px}
+.vid__journey{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:36px;flex-wrap:wrap}
+.vid__j-step{font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--c30)}
+.vid__j-arrow{color:var(--gold);opacity:.4;font-size:12px}
+
+/* TRANSFORMATION — with imagery */
+.transform{background:var(--deep);padding:112px 64px;text-align:center}
+.transform__grid{max-width:900px;margin:0 auto 48px;display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.transform__cell{position:relative;overflow:hidden;height:220px;cursor:default}
+.transform__cell-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.45) saturate(.7);transition:filter .6s}
+.transform__cell.lit .transform__cell-img{filter:brightness(.65) saturate(.9)}
+.transform__cell::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(11,10,8,.85) 0%,transparent 65%);pointer-events:none}
+.transform__cell-label{position:absolute;bottom:0;left:0;right:0;padding:20px 24px;z-index:2}
+.transform__cell-num{font-size:8px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);opacity:.65;margin-bottom:6px}
+.transform__cell-name{font-family:'Cormorant',Georgia,serif;font-size:22px;font-weight:600;color:#fff}
+.transform__cell-name em{font-style:italic;font-weight:300;color:var(--gold)}
+.transform__sub{font-size:13px;font-weight:300;color:var(--c60);max-width:460px;margin:0 auto;line-height:1.75}
+
+/* CONTACT */
+.contact{background:var(--ink);padding:112px 24px;border-top:1px solid rgba(196,162,74,.1)}
+.contact__inner{max-width:560px;margin:0 auto;text-align:center}
+.contact__eyebrow{font-size:9px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);opacity:.8;margin-bottom:22px;display:flex;align-items:center;justify-content:center;gap:16px}
+.contact__eyebrow::before,.contact__eyebrow::after{content:'';display:block;width:32px;height:1px;background:var(--gold);opacity:.4}
+.contact__title{font-family:'Cormorant',Georgia,serif;font-size:clamp(30px,4vw,50px);font-weight:500;color:#fff;line-height:1.1;letter-spacing:-.01em;margin-bottom:14px}
+.contact__sub{font-size:13px;font-weight:300;color:var(--c60);margin-bottom:40px;line-height:1.7}
+.contact__form{display:flex;flex-direction:column;gap:10px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form-field input{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(196,162,74,.15);color:var(--cream);font-family:'Outfit',system-ui,sans-serif;font-size:13px;font-weight:300;letter-spacing:.04em;padding:14px 18px;outline:none;transition:border-color .2s,background .2s;-webkit-appearance:none;border-radius:0}
+.form-field input::placeholder{color:var(--c30)}
+.form-field input:focus{border-color:rgba(196,162,74,.5);background:rgba(255,255,255,.06)}
+.form-submit{margin-top:6px;background:var(--gold);color:var(--ink);font-family:'Outfit',system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:16px 32px;cursor:pointer;border:none;transition:background .2s,opacity .2s;width:100%}
+.form-submit:hover{background:#d4b05a}
+.form-submit:disabled{opacity:.5;cursor:default}
+.form-note{font-size:10px;font-weight:300;color:var(--c30);letter-spacing:.06em;margin-top:4px}
+.form-status{font-size:11px;font-weight:300;line-height:1.5;margin-top:4px;min-height:1.5em;color:var(--c60)}
+.form-status.error{color:#d9a7a0}
+.form-status.ok{color:var(--gold)}
+.img-fallback{background:radial-gradient(circle at 62% 35%,rgba(196,162,74,.18),transparent 36%),linear-gradient(135deg,#17140e,#090806 70%)}
+.contact__success{display:none;flex-direction:column;align-items:center;gap:12px;padding:48px 0}
+.contact__success.visible{display:flex}
+.success-icon{width:48px;height:48px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--gold);margin-bottom:8px}
+.success-title{font-family:'Cormorant',Georgia,serif;font-size:32px;font-weight:400;color:#fff}
+.success-sub{font-size:13px;font-weight:300;color:var(--c60);line-height:1.7;max-width:340px;text-align:center}
+
+/* BRAND CLOSE */
+.brand-close{background:var(--deep);padding:100px 64px;text-align:center;border-top:1px solid rgba(196,162,74,.08)}
+.brand-close__logo{height:56px;width:auto;margin:0 auto 44px;filter:drop-shadow(0 0 10px rgba(196,162,74,.18))}
+.brand-close__line1{font-family:'Cormorant',Georgia,serif;font-size:clamp(26px,3.8vw,50px);font-weight:600;color:var(--c30);letter-spacing:-.015em;margin-bottom:10px;line-height:.92}
+.brand-close__line2{font-family:'Cormorant',Georgia,serif;font-size:clamp(26px,3.8vw,50px);font-weight:600;color:#fff;letter-spacing:-.015em;line-height:.92;margin-bottom:28px}
+.brand-close__descriptor{font-size:9px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);opacity:.6}
+footer{background:var(--ink);padding:24px 64px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(196,162,74,.06)}
+.footer__copy{font-size:10px;color:var(--c30);letter-spacing:.06em}
+.footer__links{display:flex;gap:28px}
+.footer__link{font-size:10px;color:var(--c30);letter-spacing:.08em;text-transform:uppercase;transition:color .2s}
+.footer__link:hover{color:var(--cream)}
+
+/* MOBILE */
 @media(max-width:860px){
   .nav{padding:16px 22px}.nav.scrolled{padding:12px 22px}
   .nav__links{display:none}
-  .nav__logo img{height:40px}
+  .nav__logo img{height:38px}
   .hero{grid-template-columns:1fr;position:relative}
-  .hero__left{
-    position:relative;z-index:3;padding:0 28px 60px;
-    background:linear-gradient(0deg,rgba(7,7,6,.98) 42%,rgba(7,7,6,.55) 100%);
-  }
+  .hero__left{position:relative;z-index:3;padding:0 28px 56px;background:linear-gradient(0deg,rgba(7,7,6,.98) 42%,rgba(7,7,6,.55) 100%)}
   .hero__right{position:absolute;inset:0;z-index:1}
-  .hero__right::before{
-    background:linear-gradient(0deg,var(--ink) 0%,rgba(7,7,6,.25) 50%,transparent 100%);
-  }
-  .exp__table{padding:26px 24px 0}
+  .hero__right::before{background:linear-gradient(0deg,var(--ink) 0%,rgba(7,7,6,.25) 50%,transparent 100%)}
+  .exp__table{padding:24px 22px 0}
   .cards-wrap{padding:0 20px}
   .cards-wrap::after{right:20px;width:80px}
   .cat-card{flex-basis:58vw;min-width:160px}
   .cat-card[data-cat="special"]{flex-basis:64vw}
   .cat-card.active{flex-basis:72vw}
-  .disc__hero{height:56vh}
-  .disc__copy{left:28px;max-width:85vw;top:auto;bottom:36px;transform:none}
-  .disc__hero::before{
-    background:linear-gradient(0deg,
-      rgba(11,10,8,.97) 0%,rgba(11,10,8,.55) 50%,rgba(11,10,8,.12) 100%);
-  }
-  .disc__name{font-size:clamp(36px,9vw,56px)}
+  .disc__hero{height:54vh}
+  .disc__copy{left:28px;max-width:85vw;top:auto;bottom:32px;transform:none}
+  .disc__hero::before{background:linear-gradient(0deg,rgba(11,10,8,.97) 0%,rgba(11,10,8,.55) 50%,rgba(11,10,8,.12) 100%)}
+  .disc__name{font-size:clamp(34px,9vw,54px)}
   .disc__more{grid-template-columns:1fr}
-  .svc-rail{
-    top:auto;bottom:0;right:0;left:0;
-    transform:translateY(100%);
-    display:flex;flex-direction:row;justify-content:space-around;
-    border:none;border-top:1px solid rgba(196,162,74,.13);border-right:none;
-    padding:8px 0 max(8px,env(safe-area-inset-bottom));
-    background:rgba(11,10,8,.96);
-    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  }
+  .svc-rail{top:auto;bottom:0;right:0;left:0;transform:translateY(100%);display:flex;flex-direction:row;justify-content:space-around;border:none;border-top:1px solid rgba(196,162,74,.13);border-right:none;padding:8px 0 max(8px,env(safe-area-inset-bottom));background:rgba(11,10,8,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
   .svc-rail.on{transform:translateY(0)}
+  .svc-rail.hidden{transform:translateY(100%)}
   .svc-need{display:none}
-  .svc-btn{
-    padding:8px 16px;border-bottom:none;
-    border-right:1px solid rgba(196,162,74,.06);flex:1;
-  }
+  .svc-btn{padding:8px 16px;border-bottom:none;border-right:1px solid rgba(196,162,74,.06);flex:1}
   .svc-btn:last-child{border-right:none}
   .svc-confirm{top:auto;bottom:72px;right:16px;left:16px;max-width:none}
+  .realization,.problem,.decision,.hospitality,.bizvalue,.keepyour,.video-sec,.transform,.contact,.brand-close{padding-left:28px;padding-right:28px}
+  .journey::before{left:20px}
+  .journey__item{grid-template-columns:44px 1fr}
+  .journey__arrow{margin-left:44px}
+  .biz__outcome{grid-template-columns:56px 1fr}
+  .transform__grid{grid-template-columns:1fr}
+  .transform__cell{height:180px}
+  .form-row{grid-template-columns:1fr}
+  .vid__player{margin:0}
+  footer{flex-direction:column;gap:14px;padding:22px;text-align:center}
+  .footer__links{justify-content:center}
+  .brand-close__logo{height:44px}
+  .brand-close{padding:72px 28px}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
 }
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   CONTACT / DEMO FORM
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.contact {
-  background: var(--ink);
-  padding: 120px 24px;
-  border-top: 1px solid rgba(196,162,74,.1);
-}
-.contact__inner {
-  max-width: 560px;
-  margin: 0 auto;
-  text-align: center;
-}
-.contact__eyebrow {
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: .28em;
-  text-transform: uppercase;
-  color: var(--gold);
-  opacity: .8;
-  margin-bottom: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-}
-.contact__eyebrow::before,
-.contact__eyebrow::after {
-  content: '';
-  display: block;
-  width: 32px;
-  height: 1px;
-  background: var(--gold);
-  opacity: .4;
-}
-.contact__title {
-  font-family: 'Cormorant', Georgia, serif;
-  font-size: clamp(32px, 4vw, 52px);
-  font-weight: 500;
-  color: #fff;
-  line-height: 1.1;
-  letter-spacing: -.01em;
-  margin-bottom: 16px;
-}
-.contact__sub {
-  font-size: 13px;
-  font-weight: 300;
-  color: var(--c60);
-  margin-bottom: 48px;
-  line-height: 1.7;
-}
-.contact__form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-.form-field input {
-  width: 100%;
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(196,162,74,.15);
-  color: var(--cream);
-  font-family: 'Outfit', system-ui, sans-serif;
-  font-size: 13px;
-  font-weight: 300;
-  letter-spacing: .04em;
-  padding: 14px 18px;
-  outline: none;
-  transition: border-color .2s, background .2s;
-  border-radius: 0;
-  -webkit-appearance: none;
-}
-.form-field input::placeholder { color: var(--c30); }
-.form-field input:focus {
-  border-color: rgba(196,162,74,.5);
-  background: rgba(255,255,255,.06);
-}
-.form-submit {
-  margin-top: 6px;
-  background: var(--gold);
-  color: var(--ink);
-  font-family: 'Outfit', system-ui, sans-serif;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  padding: 16px 32px;
-  cursor: pointer;
-  border: none;
-  transition: background .2s, opacity .2s;
-  width: 100%;
-}
-.form-submit:hover { background: #d4b05a; }
-.form-submit:disabled { opacity: .5; cursor: default; }
-.form-note {
-  font-size: 10px;
-  font-weight: 300;
-  color: var(--c30);
-  letter-spacing: .06em;
-  margin-top: 4px;
-}
-.contact__success {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  padding: 48px 0;
-}
-.contact__success.visible { display: flex; }
-.success-icon {
-  width: 48px; height: 48px;
-  border: 1px solid var(--gold);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  color: var(--gold);
-  margin-bottom: 8px;
-}
-.success-title {
-  font-family: 'Cormorant', Georgia, serif;
-  font-size: 32px;
-  font-weight: 400;
-  color: #fff;
-}
-.success-sub {
-  font-size: 13px;
-  font-weight: 300;
-  color: var(--c60);
-  line-height: 1.7;
-  max-width: 340px;
-}
-@media(max-width:640px) {
-  .form-row { grid-template-columns: 1fr; }
-  .contact { padding: 80px 24px; }
-}
-
 </style>
 </head>
 <body>
 
-<!-- ━━━━━━━━━━━━━━━━ NAV ━━━━━━━━━━━━━━━━ -->
+<!-- NAV -->
 <nav class="nav" id="nav" aria-label="M3NUX navigation">
-  <a href="#" class="nav__logo" aria-label="M3NUX — Digital Dining Intelligence">
-    <img
-      src="data:image/png;base64,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"
-      alt="M3NUX Digital Dining Intelligence"
-      width="77" height="56">
+  <a href="#" class="nav__logo" aria-label="M3NUX">
+    <img src="data:image/png;base64,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" alt="M3NUX Digital Dining Intelligence" width="71" height="52">
   </a>
   <div class="nav__links" role="list">
-    <a href="#experience" class="nav__link" role="listitem">How it works</a>
-    <a href="#" class="nav__link" role="listitem">For restaurants</a>
-    <a href="#" class="nav__link" role="listitem">Results</a>
-    <a href="#" class="nav__link" role="listitem">Demo</a>
+    <a href="#experience" class="nav__link">How it works</a>
+    <a href="#decision" class="nav__link">The system</a>
+    <a href="#bizvalue" class="nav__link">For restaurants</a>
+    <a href="#contact" class="nav__link">Demo</a>
   </div>
   <a href="#contact" class="nav__cta">Request a demo</a>
 </nav>
 
-<!-- ━━━━━━━━━━━━━━━━ HERO ━━━━━━━━━━━━━━━━ -->
+<!-- HERO -->
 <section class="hero" aria-labelledby="hero-h1">
   <div class="hero__left">
     <div class="hero__eyebrow">Digital Dining Intelligence</div>
@@ -669,9 +372,7 @@ a{text-decoration:none;color:inherit}
       <span class="hero__t-sans">Your guest</span>
       <span class="hero__t-serif">Already<br><em>Knows.</em></span>
     </h1>
-    <p class="hero__sub">
-      Before your server arrives,<br>the decision is already taking shape.
-    </p>
+    <p class="hero__sub">Before your server arrives,<br>the decision is already taking shape.</p>
     <div class="hero__actions">
       <a href="#experience" class="hero__cta-p" aria-label="Experience M3NUX">
         Experience M3NUX
@@ -681,9 +382,7 @@ a{text-decoration:none;color:inherit}
     </div>
   </div>
   <div class="hero__right" aria-hidden="true">
-    <img class="hero__photo"
-      src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=82&auto=format&fit=crop"
-      alt="" loading="eager" decoding="async">
+    <img class="hero__photo" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=82&auto=format&fit=crop" alt="" loading="eager" decoding="async">
   </div>
   <div class="hero__scroll" aria-hidden="true">
     <div class="hero__scroll-track"></div>
@@ -692,407 +391,604 @@ a{text-decoration:none;color:inherit}
   <div class="hero__seam" aria-hidden="true"></div>
 </section>
 
-<!-- ━━━━━━━━━━━━━━━━ EXPERIENCE ━━━━━━━━━━━━━━━━ -->
+<!-- EXPERIENCE -->
 <section class="experience" id="experience" aria-label="M3NUX experience">
-
   <div class="exp__table" aria-hidden="true">
     <div class="exp__table-icon">
-      <svg width="15" height="12" viewBox="0 0 15 12" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round">
-        <rect x=".7" y=".7" width="13.6" height="7.8" rx=".8"/>
-        <line x1="4.2" y1="8.5" x2="3.5" y2="11.3"/>
-        <line x1="10.8" y1="8.5" x2="11.5" y2="11.3"/>
-      </svg>
+      <svg width="15" height="12" viewBox="0 0 15 12" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round"><rect x=".7" y=".7" width="13.6" height="7.8" rx=".8"/><line x1="4.2" y1="8.5" x2="3.5" y2="11.3"/><line x1="10.8" y1="8.5" x2="11.5" y2="11.3"/></svg>
     </div>
     <div class="exp__table-rule"></div>
     <div class="exp__table-lbl">Table 07</div>
   </div>
-
   <div class="exp__q">
     <h2 class="exp__q-text">What sounds good tonight?</h2>
     <div class="exp__q-rule" aria-hidden="true"></div>
   </div>
-
   <div class="cards-wrap">
     <div class="cards-track" id="cardsTrack" role="list" aria-label="Choose your dining mood">
-
-      <div class="cat-card" data-cat="light" role="button" tabindex="0"
-        aria-label="Light — Fresh and balanced"
-        onclick="selectCat(this)"
-        onkeydown="handleKey(event,this)">
-        <img class="cat-card__img"
-          src="https://images.unsplash.com/photo-1535400255456-984e0a5d7c1f?w=500&q=82&auto=format&fit=crop&crop=center"
-          alt="" loading="lazy" decoding="async">
+      <div class="cat-card" data-cat="light" role="button" tabindex="0" aria-label="Light — Fresh and balanced" onclick="selectCat(this)" onkeydown="handleKey(event,this)">
+        <img class="cat-card__img" src="https://images.unsplash.com/photo-1519984388953-d2406bc725e1?w=500&q=82&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
         <div class="cat-card__grad" aria-hidden="true"></div>
-        <div class="cat-card__info">
-          <div class="cat-card__name">Light</div>
-          <div class="cat-card__sub">Fresh &amp; Balanced</div>
-        </div>
+        <div class="cat-card__info"><div class="cat-card__name">Light</div><div class="cat-card__sub">Fresh &amp; Balanced</div></div>
         <div class="cat-card__line" aria-hidden="true"></div>
       </div>
-
-      <div class="cat-card" data-cat="comforting" role="button" tabindex="0"
-        aria-label="Comforting — Warm and satisfying"
-        onclick="selectCat(this)"
-        onkeydown="handleKey(event,this)">
-        <img class="cat-card__img"
-          src="https://images.unsplash.com/photo-1547592180-85f173990554?w=500&q=82&auto=format&fit=crop&crop=center"
-          alt="" loading="lazy" decoding="async">
+      <div class="cat-card" data-cat="comforting" role="button" tabindex="0" aria-label="Comforting — Warm and satisfying" onclick="selectCat(this)" onkeydown="handleKey(event,this)">
+        <img class="cat-card__img" src="https://images.unsplash.com/photo-1547592180-85f173990554?w=500&q=82&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
         <div class="cat-card__grad" aria-hidden="true"></div>
-        <div class="cat-card__info">
-          <div class="cat-card__name">Comforting</div>
-          <div class="cat-card__sub">Warm &amp; Satisfying</div>
-        </div>
+        <div class="cat-card__info"><div class="cat-card__name">Comforting</div><div class="cat-card__sub">Warm &amp; Satisfying</div></div>
         <div class="cat-card__line" aria-hidden="true"></div>
       </div>
-
-      <div class="cat-card" data-cat="bold" role="button" tabindex="0"
-        aria-label="Bold — Rich and intense"
-        onclick="selectCat(this)"
-        onkeydown="handleKey(event,this)">
-        <img class="cat-card__img"
-          src="https://images.unsplash.com/photo-1544025162-d76694265947?w=500&q=82&auto=format&fit=crop&crop=center"
-          alt="" loading="lazy" decoding="async">
+      <div class="cat-card" data-cat="bold" role="button" tabindex="0" aria-label="Bold — Rich and intense" onclick="selectCat(this)" onkeydown="handleKey(event,this)">
+        <img class="cat-card__img" src="https://images.unsplash.com/photo-1544025162-d76694265947?w=500&q=82&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
         <div class="cat-card__grad" aria-hidden="true"></div>
-        <div class="cat-card__info">
-          <div class="cat-card__name">Bold</div>
-          <div class="cat-card__sub">Rich &amp; Intense</div>
-        </div>
+        <div class="cat-card__info"><div class="cat-card__name">Bold</div><div class="cat-card__sub">Rich &amp; Intense</div></div>
         <div class="cat-card__line" aria-hidden="true"></div>
       </div>
-
-      <div class="cat-card" data-cat="special" role="button" tabindex="0"
-        aria-label="Something Special — Elevated and unique"
-        onclick="selectCat(this)"
-        onkeydown="handleKey(event,this)">
+      <div class="cat-card" data-cat="special" role="button" tabindex="0" aria-label="Something Special — Elevated and unique" onclick="selectCat(this)" onkeydown="handleKey(event,this)">
         <div class="cat-card__dot" aria-hidden="true"></div>
-        <img class="cat-card__img"
-          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=82&auto=format&fit=crop&crop=center"
-          alt="" loading="lazy" decoding="async">
+        <img class="cat-card__img" src="https://images.unsplash.com/photo-1611599537845-1c7aca0091c7?w=500&q=82&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
         <div class="cat-card__grad" aria-hidden="true"></div>
-        <div class="cat-card__info">
-          <div class="cat-card__name">Something<br>Special</div>
-          <div class="cat-card__sub">Elevated &amp; Unique</div>
-        </div>
+        <div class="cat-card__info"><div class="cat-card__name">Something<br>Special</div><div class="cat-card__sub">Elevated &amp; Unique</div></div>
         <div class="cat-card__line" aria-hidden="true"></div>
       </div>
-
-      <div class="cat-card" data-cat="vegetarian" role="button" tabindex="0"
-        aria-label="Vegetarian — Plant forward"
-        onclick="selectCat(this)"
-        onkeydown="handleKey(event,this)">
-        <img class="cat-card__img"
-          src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&q=82&auto=format&fit=crop&crop=center"
-          alt="" loading="lazy" decoding="async">
+      <div class="cat-card" data-cat="vegetarian" role="button" tabindex="0" aria-label="Vegetarian — Plant forward" onclick="selectCat(this)" onkeydown="handleKey(event,this)">
+        <img class="cat-card__img" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&q=82&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
         <div class="cat-card__grad" aria-hidden="true"></div>
-        <div class="cat-card__info">
-          <div class="cat-card__name">Vegetarian</div>
-          <div class="cat-card__sub">Plant-Forward</div>
-        </div>
+        <div class="cat-card__info"><div class="cat-card__name">Vegetarian</div><div class="cat-card__sub">Plant-Forward</div></div>
         <div class="cat-card__line" aria-hidden="true"></div>
       </div>
-
-      <div class="cat-card" data-cat="surprise" role="button" tabindex="0"
-        aria-label="Surprise Me — Chef's selection"
-        onclick="selectCat(this)"
-        onkeydown="handleKey(event,this)">
-        <img class="cat-card__img"
-          src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=500&q=82&auto=format&fit=crop&crop=center"
-          alt="" loading="lazy" decoding="async">
+      <div class="cat-card" data-cat="surprise" role="button" tabindex="0" aria-label="Surprise Me — Chef selection" onclick="selectCat(this)" onkeydown="handleKey(event,this)">
+        <img class="cat-card__img" src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=500&q=82&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
         <div class="cat-card__grad" aria-hidden="true"></div>
-        <div class="cat-card__info">
-          <div class="cat-card__name">Surprise Me</div>
-          <div class="cat-card__sub">Chef's Selection</div>
-        </div>
+        <div class="cat-card__info"><div class="cat-card__name">Surprise Me</div><div class="cat-card__sub">Chef's Selection</div></div>
         <div class="cat-card__line" aria-hidden="true"></div>
       </div>
-
     </div>
   </div>
-
   <div class="exp__explore">
-    <a href="#" aria-label="Explore the full menu">
-      Explore the full menu
-      <svg width="20" height="9" viewBox="0 0 20 9" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true">
-        <line x1="0" y1="4.5" x2="17.5" y2="4.5"/>
-        <polyline points="13.5,1 17.5,4.5 13.5,8"/>
-      </svg>
-    </a>
+    <a href="#" id="fullMenuLink" aria-label="Explore the full menu">Explore the full menu <svg width="20" height="9" viewBox="0 0 20 9" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true"><line x1="0" y1="4.5" x2="17.5" y2="4.5"/><polyline points="13.5,1 17.5,4.5 13.5,8"/></svg></a>
   </div>
 </section>
 
-<!-- ━━━━━━━━━━━━━━━━ SELECTION MOMENT ━━━━━━━━━━━━━━━━ -->
+<!-- SELECTION MOMENT -->
 <div class="sel-moment" id="selMoment" role="status" aria-live="assertive" aria-hidden="true">
   <div class="sel-txt">Good choice.</div>
 </div>
 
-<!-- ━━━━━━━━━━━━━━━━ DISCOVERY ━━━━━━━━━━━━━━━━ -->
+<!-- DISCOVERY -->
 <section class="discovery" id="discovery" aria-label="Dish recommendation">
   <div class="disc__hero">
-    <img class="disc__img"
-      src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=1600&q=85&auto=format&fit=crop&crop=center"
-      alt="Australian Wagyu — Potato Purée, Truffle Jus, Seasonal Vegetables"
-      loading="lazy" decoding="async">
+    <img class="disc__img" id="discImg" src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=1600&q=85&auto=format&fit=crop&crop=center" alt="Australian Wagyu — Potato Purée, Truffle Jus, Seasonal Vegetables" loading="lazy" decoding="async">
     <div class="disc__copy">
-      <div class="disc__lbl">Chef's Recommendation · Tonight</div>
-      <h2 class="disc__name">Australian<br>Wagyu</h2>
-      <p class="disc__components">Potato Purée · Truffle Jus · Seasonal Vegetables</p>
-      <div class="disc__tags" aria-label="Dish qualities">
-        <span class="disc__tag">Rich</span>
-        <span class="disc__tag">Refined</span>
-        <span class="disc__tag">Chef Recommended</span>
-      </div>
-      <div class="disc__price" aria-label="Price: 68 dollars">$68</div>
+      <div class="disc__lbl" id="discLbl">Tonight, we'd start here.</div>
+      <h2 class="disc__name" id="discName">Australian<br>Wagyu</h2>
+      <p class="disc__components" id="discComponents">Potato Purée · Truffle Jus · Seasonal Vegetables</p>
+      <div class="disc__tags" id="discTags"><span class="disc__tag">Rich</span><span class="disc__tag">Refined</span><span class="disc__tag">Chef Recommended</span></div>
+      <div class="disc__price" id="discPrice" aria-label="68 dollars">$68</div>
       <button class="disc__rem" id="remBtn" onclick="rememberDish()" aria-label="Remember this dish" aria-pressed="false">
-        <span class="disc__heart" aria-hidden="true">♡</span>
+        <span class="disc__heart" aria-hidden="true">&#9825;</span>
         <span id="remTxt">Remember this</span>
       </button>
     </div>
   </div>
-
-  <div class="disc__more" aria-label="More to discover">
-    <div class="disc__sec" role="button" tabindex="0"
-      aria-label="Seared Sea Bass — 42 dollars"
-      onclick="" onkeydown="if(event.key==='Enter')this.click()">
-      <img class="disc__sec-img"
-        src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&q=75&auto=format&fit=crop&crop=center"
-        alt="" loading="lazy" decoding="async">
-      <div class="disc__sec-info">
-        <div>
-          <div class="disc__sec-name">Seared Sea Bass</div>
-          <div class="disc__sec-sub">Saffron Beurre Blanc · Fennel</div>
-        </div>
-        <div class="disc__sec-price">$42</div>
-      </div>
+  <div class="disc__more">
+    <div class="disc__sec" role="button" tabindex="0" aria-label="Seared Sea Bass — 42 dollars" onkeydown="if(event.key==='Enter')this.click()">
+      <img class="disc__sec-img" src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&q=75&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
+      <div class="disc__sec-info"><div><div class="disc__sec-name">Seared Sea Bass</div><div class="disc__sec-sub">Saffron Beurre Blanc · Fennel</div></div><div class="disc__sec-price">$42</div></div>
     </div>
-    <div class="disc__sec" role="button" tabindex="0"
-      aria-label="Braised Short Rib — 54 dollars"
-      onclick="" onkeydown="if(event.key==='Enter')this.click()">
-      <img class="disc__sec-img"
-        src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=75&auto=format&fit=crop&crop=center"
-        alt="" loading="lazy" decoding="async">
-      <div class="disc__sec-info">
-        <div>
-          <div class="disc__sec-name">Braised Short Rib</div>
-          <div class="disc__sec-sub">72h Braise · Bone Jus · Celery Root</div>
-        </div>
-        <div class="disc__sec-price">$54</div>
-      </div>
+    <div class="disc__sec" role="button" tabindex="0" aria-label="Braised Short Rib — 54 dollars" onkeydown="if(event.key==='Enter')this.click()">
+      <img class="disc__sec-img" src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=75&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
+      <div class="disc__sec-info"><div><div class="disc__sec-name">Braised Short Rib</div><div class="disc__sec-sub">72h Braise · Bone Jus · Celery Root</div></div><div class="disc__sec-price">$54</div></div>
     </div>
   </div>
 </section>
 
-<!-- ━━━━━━━━━━━━━━━━ PICKS TOAST ━━━━━━━━━━━━━━━━ -->
-<div class="picks-toast" id="picksToast" role="status" aria-live="polite" aria-atomic="true">
+<!-- PICKS TOAST -->
+<div class="picks-toast" id="picksToast" role="status" aria-live="polite">
   <div class="picks-lbl">Your picks</div>
   <div id="picksItems"></div>
 </div>
 
-<!-- ━━━━━━━━━━━━━━━━ SERVICE RAIL ━━━━━━━━━━━━━━━━ -->
+<!-- SERVICE RAIL -->
 <aside class="svc-rail" id="svcRail" aria-label="Guest service">
   <div class="svc-need" aria-hidden="true">Need something?</div>
   <button class="svc-btn" onclick="trigSvc('Water is on the way.')" aria-label="Request water">
-    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true">
-      <path d="M10 2Q10 2 4 10C4 14.5 6.8 17 10 17C13.2 17 16 14.5 16 10Q10 2 10 2Z"/>
-    </svg>
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true"><path d="M10 2Q10 2 4 10C4 14.5 6.8 17 10 17C13.2 17 16 14.5 16 10Q10 2 10 2Z"/></svg>
     <span>Water</span>
   </button>
   <button class="svc-btn" onclick="trigSvc('Your server is on the way.')" aria-label="Request server">
-    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true">
-      <circle cx="10" cy="6" r="3.2"/>
-      <path d="M3.5 18C3.5 13.5 6.5 11 10 11C13.5 11 16.5 13.5 16.5 18"/>
-    </svg>
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true"><circle cx="10" cy="6" r="3.2"/><path d="M3.5 18C3.5 13.5 6.5 11 10 11C13.5 11 16.5 13.5 16.5 18"/></svg>
     <span>Server</span>
   </button>
-  <button class="svc-btn" onclick="trigSvc('Your dessert menu is coming.')" aria-label="Request dessert menu">
-    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true">
-      <path d="M6 16L6 11C6 8.2 7.8 6.5 10 6.5C12.2 6.5 14 8.2 14 11L14 16"/>
-      <line x1="4" y1="16" x2="16" y2="16"/>
-      <line x1="10" y1="6.5" x2="10" y2="4"/>
-      <circle cx="10" cy="3" r=".8" fill="currentColor"/>
-    </svg>
+  <button class="svc-btn" onclick="trigSvc('Your dessert menu is coming.')" aria-label="Request dessert">
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true"><path d="M6 16L6 11C6 8.2 7.8 6.5 10 6.5C12.2 6.5 14 8.2 14 11L14 16"/><line x1="4" y1="16" x2="16" y2="16"/><line x1="10" y1="6.5" x2="10" y2="4"/><circle cx="10" cy="3" r=".8" fill="currentColor"/></svg>
     <span>Dessert</span>
   </button>
   <button class="svc-btn" onclick="trigSvc('Your check will arrive shortly.')" aria-label="Request check">
-    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true">
-      <rect x="3" y="3" width="14" height="14" rx=".8"/>
-      <path d="M7 10L9.2 12.5L13.5 7.5"/>
-    </svg>
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="14" height="14" rx=".8"/><path d="M7 10L9.2 12.5L13.5 7.5"/></svg>
     <span>Check</span>
   </button>
 </aside>
-
 <div class="svc-confirm" id="svcConfirm" role="alert" aria-live="assertive">
   <div class="svc-msg" id="svcMsg"></div>
 </div>
 
-<script>
-// ── Nav + service rail on scroll ──
-const $nav     = document.getElementById('nav');
-const $rail    = document.getElementById('svcRail');
-const $exp     = document.getElementById('experience');
+<!-- REALIZATION -->
+<section class="realization" id="realization" aria-label="You just used M3NUX">
+  <h2 class="real__headline">You just<br>used <em>M3NUX.</em></h2>
+  <div class="real__items" role="list">
+    <div class="real__item" id="ri1" role="listitem">No app downloaded.</div>
+    <div class="real__item" id="ri2" role="listitem">No order placed.</div>
+    <div class="real__item" id="ri3" role="listitem">No POS replaced.</div>
+  </div>
+  <div class="real__closing" id="realClosing">You simply made a decision differently.</div>
+</section>
 
-window.addEventListener('scroll', function() {
-  $nav.classList.toggle('scrolled', window.scrollY > 55);
-  var rect = $exp.getBoundingClientRect();
-  $rail.classList.toggle('on', rect.top < window.innerHeight * 0.6);
-}, {passive: true});
+<!-- PROBLEM -->
+<section class="problem" aria-label="The menu problem">
+  <h2 class="problem__built">Menus were built<br>to display food.</h2>
+  <p class="problem__not">Not to help people decide.</p>
+  <div class="problem__flow" aria-label="M3NUX experience architecture">
+    <span class="problem__step">Discover</span><span class="problem__arrow" aria-hidden="true">&#8594;</span>
+    <span class="problem__step">Understand</span><span class="problem__arrow" aria-hidden="true">&#8594;</span>
+    <span class="problem__step">Decide</span>
+  </div>
+  <p class="problem__statement"><strong>M3NUX redesigns the space between seeing the menu and speaking to your server.</strong></p>
+</section>
 
-// ── Drag to scroll cards ──
-var track = document.getElementById('cardsTrack');
-var dragging = false, startX = 0, scrollLeft = 0;
-track.addEventListener('mousedown', function(e) {
-  dragging = true;
-  startX = e.pageX - track.offsetLeft;
-  scrollLeft = track.scrollLeft;
-});
-document.addEventListener('mouseup', function() { dragging = false; });
-track.addEventListener('mousemove', function(e) {
-  if (!dragging) return;
-  e.preventDefault();
-  var x = e.pageX - track.offsetLeft;
-  track.scrollLeft = scrollLeft - (x - startX) * 1.15;
-});
-
-// ── Category selection ──
-var selTimer = null;
-function selectCat(el) {
-  var cards = document.querySelectorAll('.cat-card');
-  cards.forEach(function(c) {
-    c.classList.remove('active', 'receded');
-    if (c !== el) c.classList.add('receded');
-  });
-  el.classList.add('active');
-
-  var mom = document.getElementById('selMoment');
-  mom.removeAttribute('aria-hidden');
-  mom.classList.add('on');
-
-  clearTimeout(selTimer);
-  selTimer = setTimeout(function() {
-    mom.classList.remove('on');
-    mom.setAttribute('aria-hidden', 'true');
-    cards.forEach(function(c) { c.classList.remove('receded', 'active'); });
-    var disc = document.getElementById('discovery');
-    disc.classList.add('on');
-    setTimeout(function() {
-      disc.scrollIntoView({behavior: 'smooth', block: 'start'});
-    }, 60);
-  }, 1100);
-}
-
-function handleKey(e, el) {
-  if (e.key === 'Enter' || e.key === ' ') {
-    e.preventDefault();
-    selectCat(el);
-  }
-}
-
-// ── Remember This ──
-var picks = [];
-function rememberDish() {
-  var btn = document.getElementById('remBtn');
-  if (btn.classList.contains('saved')) return;
-  var name = 'Australian Wagyu';
-  picks.push(name);
-  btn.classList.add('saved');
-  btn.setAttribute('aria-pressed', 'true');
-  btn.querySelector('.disc__heart').textContent = '♥';
-  document.getElementById('remTxt').textContent = 'Remembered';
-
-  var items = document.getElementById('picksItems');
-  items.innerHTML = picks.map(function(p) {
-    return '<div class="picks-item">' + p + '</div>';
-  }).join('');
-  var toast = document.getElementById('picksToast');
-  toast.classList.add('on');
-  clearTimeout(window._tt);
-  window._tt = setTimeout(function() { toast.classList.remove('on'); }, 3000);
-}
-
-// ── Service ──
-var svcTimer = null;
-function trigSvc(msg) {
-  document.getElementById('svcMsg').textContent = msg;
-  var conf = document.getElementById('svcConfirm');
-  conf.classList.add('on');
-  clearTimeout(svcTimer);
-  svcTimer = setTimeout(function() { conf.classList.remove('on'); }, 2600);
-}
-
-// ── Demo form submission ──
-function submitForm() {
-  var restaurant = document.getElementById('fRestaurant').value.trim();
-  var name = document.getElementById('fName').value.trim();
-  var email = document.getElementById('fEmail').value.trim();
-  var btn = document.getElementById('formSubmit');
-
-  if (!restaurant || !name || !email) {
-    btn.textContent = 'Please fill required fields';
-    setTimeout(function() { btn.textContent = 'Show me my M3NUX →'; }, 2200);
-    return;
-  }
-  var emailReg = /^[^\s@]+@[^^\s@]+\.[^\s@]+$/;
-  if (!emailReg.test(email)) {
-    btn.textContent = 'Check your email address';
-    setTimeout(function() { btn.textContent = 'Show me my M3NUX →'; }, 2200);
-    return;
-  }
-
-  btn.disabled = true;
-  btn.textContent = 'Sending...';
-
-  // Formspree endpoint — replace YOUR_ID with actual form ID
-  fetch('https://formspree.io/f/YOUR_ID', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify({ restaurant: restaurant, name: name, email: email,
-      social: document.getElementById('fSocial').value.trim() })
-  })
-  .catch(function() {}) // Silent fail — still show success
-  .finally(function() {
-    document.getElementById('contactForm').style.display = 'none';
-    var s = document.getElementById('contactSuccess');
-    s.classList.add('visible');
-  });
-}
-
-</script>
-
-<!-- ━━━━━━━━━━━━━━━━ CONTACT / REQUEST DEMO ━━━━━━━━━━━━━━━━ -->
-<section id="contact" class="contact" aria-label="Request a demo">
-  <div class="contact__inner">
-    <div class="contact__eyebrow">Private Demonstration</div>
-    <h2 class="contact__title">What would M3NUX<br>look like in your restaurant?</h2>
-    <p class="contact__sub">Show us your restaurant. We'll show you the experience.</p>
-
-    <div class="contact__form" id="contactForm">
-      <div class="form-row">
-        <div class="form-field">
-          <input type="text" id="fRestaurant" placeholder="Restaurant name" autocomplete="off" aria-label="Restaurant name">
-        </div>
-        <div class="form-field">
-          <input type="text" id="fName" placeholder="Your name" autocomplete="off" aria-label="Your name">
-        </div>
+<!-- DECISION LAYER -->
+<section class="decision" id="decision" aria-label="The Decision Layer">
+  <div class="decision__eyebrow">The system</div>
+  <h2 class="decision__title">The Decision Layer</h2>
+  <div class="journey" role="list">
+    <div class="journey__item" id="j1" role="listitem">
+      <div class="journey__num-wrap"><div class="journey__num">01</div><div class="journey__dot" aria-hidden="true"></div></div>
+      <div class="journey__content">
+        <div class="journey__name">Discover</div>
+        <p class="journey__desc">Guests navigate by what they want — not only by how the kitchen categorizes food.</p>
       </div>
-      <div class="form-field">
-        <input type="email" id="fEmail" placeholder="Email address" autocomplete="off" aria-label="Email address">
-      </div>
-      <div class="form-field">
-        <input type="text" id="fSocial" placeholder="Website or Instagram (optional)" autocomplete="off" aria-label="Website or Instagram">
-      </div>
-      <button class="form-submit" id="formSubmit" onclick="submitForm()">
-        Show me my M3NUX &rarr;
-      </button>
-      <p class="form-note">Private demonstration &nbsp;&middot;&nbsp; No commitment</p>
     </div>
+    <div class="journey__arrow" aria-hidden="true">&#8595;</div>
+    <div class="journey__item" id="j2" role="listitem">
+      <div class="journey__num-wrap"><div class="journey__num">02</div><div class="journey__dot" aria-hidden="true"></div></div>
+      <div class="journey__content">
+        <div class="journey__name">Understand</div>
+        <p class="journey__desc">Visual ingredients, dietary information and intentional descriptions reduce uncertainty.</p>
+      </div>
+    </div>
+    <div class="journey__arrow" aria-hidden="true">&#8595;</div>
+    <div class="journey__item" id="j3" role="listitem">
+      <div class="journey__num-wrap"><div class="journey__num">03</div><div class="journey__dot" aria-hidden="true"></div></div>
+      <div class="journey__content">
+        <div class="journey__name">Decide</div>
+        <p class="journey__desc">Chef recommendations, signatures, favorites and premium choices guide attention naturally toward the right choice.</p>
+      </div>
+    </div>
+    <div class="journey__arrow" aria-hidden="true">&#8595;</div>
+    <div class="journey__item" id="j4" role="listitem">
+      <div class="journey__num-wrap"><div class="journey__num">04</div><div class="journey__dot" aria-hidden="true"></div></div>
+      <div class="journey__content">
+        <div class="journey__name">Service</div>
+        <p class="journey__desc">Guests communicate simple needs without replacing the hospitality experience.</p>
+      </div>
+    </div>
+  </div>
+  <div class="decision__closing">
+    <p class="decision__closing-text">One layer.<span>Four moments.</span></p>
+  </div>
+</section>
 
-    <div class="contact__success" id="contactSuccess" aria-live="polite">
-      <div class="success-icon">&#10003;</div>
-      <div class="success-title">You're on the list.</div>
-      <div class="success-sub">We'll reach out within 48 hours to schedule your private demo.</div>
+<!-- HOSPITALITY -->
+<section class="hospitality" aria-label="Technology and hospitality">
+  <h2 class="hosp__line1">Technology shouldn't<br>replace hospitality.</h2>
+  <div class="hosp__divider" aria-hidden="true"></div>
+  <p class="hosp__line2">It should remove<br>the friction around it.</p>
+</section>
+
+<!-- BUSINESS VALUE -->
+<section class="bizvalue" id="bizvalue" aria-label="Business value">
+  <div class="biz__seq">
+    <div class="biz__beautiful">Beautiful for guests.</div>
+    <div class="biz__built">Built for business.</div>
+  </div>
+  <div class="biz__outcomes" role="list">
+    <div class="biz__outcome" id="bo1" role="listitem">
+      <div class="biz__indicator">&#8593;</div>
+      <div class="biz__right"><div class="biz__metric">Average Check</div><p class="biz__desc">Strategic discovery gives premium items, signatures and upgrades greater visibility.</p></div>
+    </div>
+    <div class="biz__outcome" id="bo2" role="listitem">
+      <div class="biz__indicator">&#8593;</div>
+      <div class="biz__right"><div class="biz__metric">Guest Confidence</div><p class="biz__desc">Better information creates easier decisions and a more assured dining experience.</p></div>
+    </div>
+    <div class="biz__outcome" id="bo3" role="listitem">
+      <div class="biz__indicator">&#8595;</div>
+      <div class="biz__right"><div class="biz__metric">Menu Friction</div><p class="biz__desc">Less searching, less uncertainty, less repetitive explanation from your team.</p></div>
+    </div>
+    <div class="biz__outcome" id="bo4" role="listitem">
+      <div class="biz__indicator">&#8593;</div>
+      <div class="biz__right"><div class="biz__metric">Brand Perception</div><p class="biz__desc">The digital experience begins to match the quality of the restaurant experience.</p></div>
     </div>
   </div>
 </section>
 
+<!-- KEEP YOUR -->
+<section class="keepyour" aria-label="Built around your operation">
+  <div class="ky__title">Built around your operation</div>
+  <div class="ky__list" role="list">
+    <div class="ky__item" role="listitem"><span class="ky__item-name">Your POS</span><span class="ky__check" aria-label="Kept">&#10003;</span></div>
+    <div class="ky__item" role="listitem"><span class="ky__item-name">Kitchen workflow</span><span class="ky__check" aria-label="Kept">&#10003;</span></div>
+    <div class="ky__item" role="listitem"><span class="ky__item-name">Your servers</span><span class="ky__check" aria-label="Kept">&#10003;</span></div>
+    <div class="ky__item" role="listitem"><span class="ky__item-name">Your menu</span><span class="ky__check" aria-label="Kept">&#10003;</span></div>
+    <div class="ky__item" role="listitem"><span class="ky__item-name">Payment system</span><span class="ky__check" aria-label="Kept">&#10003;</span></div>
+  </div>
+  <h2 class="ky__change">Change the<br><em>experience.</em></h2>
+  <p class="ky__sub">M3NUX operates as an experience layer around your existing restaurant.</p>
+</section>
+
+<!-- VIDEO -->
+<section class="video-sec" aria-label="M3NUX overview">
+  <div class="vid__eyebrow">See it in action</div>
+  <h2 class="vid__headline">45 seconds.</h2>
+  <p class="vid__sub">That's enough to understand the difference.</p>
+  <div class="vid__player">
+    <video id="mainVideo" preload="none" poster="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80&auto=format&fit=crop" aria-label="M3NUX overview — 45 second demonstration">
+      <!-- Keep M3NUX.mp4 in the same deployed directory as this HTML file. -->
+      <source src="M3NUX.mp4" type="video/mp4">
+      Your browser does not support video playback.
+    </video>
+    <div class="vid__player-overlay" id="vidOverlay" onclick="playVideo()" role="button" tabindex="0" aria-label="Play M3NUX overview" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();playVideo()}">
+      <div class="vid__play" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+    </div>
+  </div>
+  <div class="vid__journey" aria-label="The M3NUX journey">
+    <span class="vid__j-step">Scan</span><span class="vid__j-arrow" aria-hidden="true">&#8594;</span>
+    <span class="vid__j-step">Discover</span><span class="vid__j-arrow" aria-hidden="true">&#8594;</span>
+    <span class="vid__j-step">Understand</span><span class="vid__j-arrow" aria-hidden="true">&#8594;</span>
+    <span class="vid__j-step">Decide</span><span class="vid__j-arrow" aria-hidden="true">&#8594;</span>
+    <span class="vid__j-step">Service</span>
+  </div>
+</section>
+
+<!-- TRANSFORMATION -->
+<section class="transform" aria-label="Your restaurant, your M3NUX">
+  <div class="transform__grid">
+    <div class="transform__cell" id="tc1">
+      <img class="transform__cell-img" src="https://images.unsplash.com/photo-1519984388953-d2406bc725e1?w=500&q=82&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
+      <div class="transform__cell-label">
+        <div class="transform__cell-num">Your</div>
+        <div class="transform__cell-name">Menu.</div>
+      </div>
+    </div>
+    <div class="transform__cell" id="tc2">
+      <img class="transform__cell-img" src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=1600&q=85&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
+      <div class="transform__cell-label">
+        <div class="transform__cell-num">Your</div>
+        <div class="transform__cell-name">Food.</div>
+      </div>
+    </div>
+    <div class="transform__cell" id="tc3">
+      <img class="transform__cell-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=82&auto=format&fit=crop" alt="" loading="lazy" decoding="async">
+      <div class="transform__cell-label">
+        <div class="transform__cell-num">Your</div>
+        <div class="transform__cell-name">Brand.</div>
+      </div>
+    </div>
+    <div class="transform__cell" id="tc4">
+      <img class="transform__cell-img" src="https://images.unsplash.com/photo-1611599537845-1c7aca0091c7?w=500&q=82&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
+      <div class="transform__cell-label">
+        <div class="transform__cell-num">Your</div>
+        <div class="transform__cell-name"><em>M3NUX.</em></div>
+      </div>
+    </div>
+  </div>
+  <p class="transform__sub">M3NUX is designed around your restaurant — not the other way around.</p>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact" aria-label="Request a demo">
+  <div class="contact__inner">
+    <div class="contact__eyebrow">Private Demonstration</div>
+    <h2 class="contact__title">What would M3NUX<br>look like in your restaurant?</h2>
+    <p class="contact__sub">Show us your restaurant. We'll show you the experience.</p>
+    <div class="contact__form" id="contactForm">
+      <div class="form-row">
+        <div class="form-field"><input type="text" id="fRestaurant" placeholder="Restaurant name" autocomplete="off" aria-label="Restaurant name" required></div>
+        <div class="form-field"><input type="text" id="fName" placeholder="Your name" autocomplete="name" aria-label="Your name" required></div>
+      </div>
+      <div class="form-field"><input type="email" id="fEmail" placeholder="Email address" autocomplete="email" aria-label="Email address" required></div>
+      <div class="form-field"><input type="text" id="fSocial" placeholder="Website or Instagram (optional)" autocomplete="off" aria-label="Website or Instagram"></div>
+      <button class="form-submit" id="formSubmit" onclick="submitForm()">Show me my M3NUX &#8594;</button>
+      <p class="form-note">Private demonstration &nbsp;&middot;&nbsp; No commitment</p>
+      <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+    </div>
+    <div class="contact__success" id="contactSuccess">
+      <div class="success-icon">&#10003;</div>
+      <div class="success-title">You're on the list.</div>
+      <div class="success-sub">We'll reach out within 48 hours to schedule your private demonstration.</div>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND CLOSE -->
+<div class="brand-close">
+  <img class="brand-close__logo" src="data:image/png;base64,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" alt="M3NUX" width="71" height="52">
+  <p class="brand-close__line1">The menu doesn't change.</p>
+  <p class="brand-close__line2">The guest experience does.</p>
+  <p class="brand-close__descriptor">Digital Dining Intelligence</p>
+</div>
+
+<footer>
+  <span class="footer__copy">&copy; 2026 M3NUX. All rights reserved.</span>
+  <div class="footer__links">
+    <a href="#" class="footer__link">Privacy</a>
+    <a href="#contact" class="footer__link">Contact</a>
+  </div>
+</footer>
+
+<script>
+// Nav + service rail scroll
+var $nav = document.getElementById('nav');
+var $rail = document.getElementById('svcRail');
+var $exp = document.getElementById('experience');
+var $real = document.getElementById('realization');
+var railHidden = false;
+
+window.addEventListener('scroll', function() {
+  var sy = window.scrollY;
+  $nav.classList.toggle('scrolled', sy > 55);
+
+  // Show rail when inside experience
+  if ($exp) {
+    var expRect = $exp.getBoundingClientRect();
+    var railShouldShow = expRect.top < window.innerHeight * 0.6;
+    // Hide rail when realization section is reached
+    if ($real) {
+      var realRect = $real.getBoundingClientRect();
+      if (realRect.top < window.innerHeight * 0.8) {
+        railShouldShow = false;
+        railHidden = true;
+      }
+    }
+    if (!railHidden || railShouldShow === false) {
+      if (railHidden) {
+        $rail.classList.remove('on');
+        $rail.classList.add('hidden');
+      } else {
+        $rail.classList.toggle('on', railShouldShow);
+      }
+    }
+  }
+
+  revealOnScroll();
+}, {passive: true});
+
+// Drag scroll
+var track = document.getElementById('cardsTrack');
+var dragging = false, startX = 0, scrollLeft = 0;
+track.addEventListener('mousedown', function(e) { dragging = true; startX = e.pageX - track.offsetLeft; scrollLeft = track.scrollLeft; });
+document.addEventListener('mouseup', function() { dragging = false; });
+track.addEventListener('mousemove', function(e) {
+  if (!dragging) return;
+  e.preventDefault();
+  track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX) * 1.15;
+});
+
+// Category selection — every dining intention now returns a contextually correct result
+var selTimer = null;
+var currentDish = 'Australian Wagyu';
+var menuData = {
+  light: {
+    name:'Seared<br>Sea Bass', dish:'Seared Sea Bass',
+    components:'Citrus Beurre Blanc · Shaved Fennel · Garden Herbs',
+    tags:['Fresh','Delicate','Chef Recommended'], price:'$42',
+    image:'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=1600&q=82&auto=format&fit=crop&crop=center'
+  },
+  comforting: {
+    name:'Braised<br>Short Rib', dish:'Braised Short Rib',
+    components:'Potato Purée · Bone Jus · Glazed Root Vegetables',
+    tags:['Warm','Slow Braised','Comforting'], price:'$54',
+    image:'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1600&q=82&auto=format&fit=crop&crop=center'
+  },
+  bold: {
+    name:'Charred<br>Ribeye', dish:'Charred Ribeye',
+    components:'Smoked Chili Jus · Crispy Shallot · Fire-Roasted Pepper',
+    tags:['Intense','Charred','Bold'], price:'$58',
+    image:'https://images.unsplash.com/photo-1544025162-d76694265947?w=1600&q=82&auto=format&fit=crop&crop=center'
+  },
+  special: {
+    name:'Australian<br>Wagyu', dish:'Australian Wagyu',
+    components:'Potato Purée · Truffle Jus · Seasonal Vegetables',
+    tags:['Rich','Refined','Chef Recommended'], price:'$68',
+    image:'https://images.unsplash.com/photo-1600891964092-4316c288032e?w=1600&q=85&auto=format&fit=crop&crop=center'
+  },
+  vegetarian: {
+    name:'Wild Mushroom<br>Risotto', dish:'Wild Mushroom Risotto',
+    components:'Forest Mushrooms · Aged Parmesan · Herb Oil',
+    tags:['Vegetarian','Earthy','Silky'], price:'$36',
+    image:'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1600&q=82&auto=format&fit=crop&crop=center'
+  },
+  surprise: {
+    name:'Chef’s<br>Selection', dish:'Chef’s Selection',
+    components:'A changing composition selected by the chef for tonight',
+    tags:['Unexpected','Seasonal','Chef Selection'], price:'Market',
+    image:'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=1600&q=82&auto=format&fit=crop&crop=center'
+  }
+};
+
+function applyDish(cat) {
+  var d = menuData[cat] || menuData.special;
+  currentDish = d.dish;
+  var img = document.getElementById('discImg');
+  img.src = d.image;
+  img.alt = d.dish + ' — ' + d.components;
+  document.getElementById('discName').innerHTML = d.name;
+  document.getElementById('discComponents').textContent = d.components;
+  document.getElementById('discTags').innerHTML = d.tags.map(function(t){ return '<span class="disc__tag">'+t+'</span>'; }).join('');
+  var price = document.getElementById('discPrice');
+  price.textContent = d.price;
+  price.setAttribute('aria-label', d.price === 'Market' ? 'Market price' : d.price.replace('$','') + ' dollars');
+  document.getElementById('discLbl').textContent = cat === 'surprise' ? 'Tonight, let the chef choose.' : 'Tonight, we’d start here.';
+  var btn = document.getElementById('remBtn');
+  btn.classList.remove('saved'); btn.setAttribute('aria-pressed','false');
+  btn.querySelector('.disc__heart').innerHTML = '&#9825;';
+  document.getElementById('remTxt').textContent = 'Remember this';
+}
+
+function selectCat(el) {
+  var cat = el.getAttribute('data-cat') || 'special';
+  var cards = document.querySelectorAll('.cat-card');
+  cards.forEach(function(c) { c.classList.remove('active','receded'); if (c !== el) c.classList.add('receded'); });
+  el.classList.add('active');
+  applyDish(cat);
+  var mom = document.getElementById('selMoment');
+  mom.removeAttribute('aria-hidden'); mom.classList.add('on');
+  clearTimeout(selTimer);
+  selTimer = setTimeout(function() {
+    mom.classList.remove('on'); mom.setAttribute('aria-hidden','true');
+    cards.forEach(function(c) { c.classList.remove('receded','active'); });
+    var disc = document.getElementById('discovery');
+    disc.classList.add('on');
+    setTimeout(function() { disc.scrollIntoView({behavior:'smooth',block:'start'}); }, 60);
+  }, 1100);
+}
+function handleKey(e, el) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectCat(el); } }
+
+// Remember This
+var picks = [];
+function rememberDish() {
+  var btn = document.getElementById('remBtn');
+  if (btn.classList.contains('saved')) return;
+  picks.push(currentDish);
+  btn.classList.add('saved'); btn.setAttribute('aria-pressed','true');
+  btn.querySelector('.disc__heart').innerHTML = '&#9829;';
+  document.getElementById('remTxt').textContent = 'Remembered';
+  document.getElementById('picksItems').innerHTML = picks.map(function(p) { return '<div class="picks-item">' + p + '</div>'; }).join('');
+  var toast = document.getElementById('picksToast');
+  toast.classList.add('on');
+  clearTimeout(window._tt); window._tt = setTimeout(function() { toast.classList.remove('on'); }, 3200);
+}
+
+// Service
+var svcTimer = null;
+function trigSvc(msg) {
+  document.getElementById('svcMsg').textContent = msg;
+  var c = document.getElementById('svcConfirm');
+  c.classList.add('on');
+  clearTimeout(svcTimer); svcTimer = setTimeout(function() { c.classList.remove('on'); }, 2600);
+}
+
+// Scroll reveal
+var revealed = {};
+function revealOnScroll() {
+  var vh = window.innerHeight;
+  function check(id, threshold) {
+    if (revealed[id]) return;
+    var el = document.getElementById(id);
+    if (!el) return;
+    if (el.getBoundingClientRect().top < vh * threshold) {
+      el.classList.add('revealed');
+      revealed[id] = true;
+    }
+  }
+  // Realization
+  check('ri1', .82); 
+  if (revealed['ri1']) setTimeout(function(){check('ri2',.82);},220);
+  if (revealed['ri2']) setTimeout(function(){check('ri3',.82);},220);
+  if (revealed['ri3']) setTimeout(function(){check('realClosing',.82);},400);
+  // Decision journey
+  ['j1','j2','j3','j4'].forEach(function(id, i) {
+    setTimeout(function() { check(id, .82); }, i * 80);
+  });
+  // Business outcomes
+  ['bo1','bo2','bo3','bo4'].forEach(function(id, i) {
+    setTimeout(function() { check(id, .85); }, i * 100);
+  });
+  // Transform cells
+  ['tc1','tc2','tc3','tc4'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top < vh * 0.85) el.classList.add('lit');
+  });
+}
+
+// Video
+function playVideo() {
+  var v = document.getElementById('mainVideo');
+  var overlay = document.getElementById('vidOverlay');
+  if (v) {
+    v.play().catch(function(){});
+    overlay.style.display = 'none';
+  }
+}
+
+// Form
+// Replace this endpoint with the real Formspree endpoint before production launch.
+var FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+function submitForm() {
+  var restaurant = document.getElementById('fRestaurant').value.trim();
+  var name = document.getElementById('fName').value.trim();
+  var email = document.getElementById('fEmail').value.trim();
+  var social = document.getElementById('fSocial').value.trim();
+  var btn = document.getElementById('formSubmit');
+  var status = document.getElementById('formStatus');
+  status.className = 'form-status'; status.textContent = '';
+  if (!restaurant || !name || !email) {
+    status.classList.add('error'); status.textContent = 'Please complete the required fields.';
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    status.classList.add('error'); status.textContent = 'Please check your email address.';
+    return;
+  }
+  if (FORM_ENDPOINT.indexOf('YOUR_FORM_ID') !== -1) {
+    status.classList.add('error'); status.textContent = 'Demo form connection is pending. Please connect the Formspree endpoint before launch.';
+    return;
+  }
+  btn.disabled = true; btn.textContent = 'Sending...';
+  fetch(FORM_ENDPOINT, {
+    method: 'POST',
+    headers: {'Content-Type':'application/json','Accept':'application/json'},
+    body: JSON.stringify({restaurant:restaurant,name:name,email:email,social:social})
+  }).then(function(res) {
+    if (!res.ok) throw new Error('Form submission failed');
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('contactSuccess').classList.add('visible');
+  }).catch(function() {
+    status.classList.add('error');
+    status.textContent = 'We could not send your request. Please try again.';
+    btn.disabled = false; btn.innerHTML = 'Show me my M3NUX &#8594;';
+  });
+}
+
+// Production-safe image handling: never show a browser broken-image icon.
+function installImageFallbacks() {
+  function applyFallback(img) {
+    if (img.dataset.fallbackApplied) return;
+    img.dataset.fallbackApplied = '1';
+    img.removeAttribute('src');
+    img.classList.add('img-fallback');
+    img.alt = img.alt || 'M3NUX dining experience';
+  }
+  document.querySelectorAll('img:not(.nav__logo img):not(.brand-close__logo)').forEach(function(img) {
+    img.addEventListener('error', function() { applyFallback(img); });
+    if (img.complete && img.naturalWidth === 0) applyFallback(img);
+  });
+}
+installImageFallbacks();
+
+// Keep the "Explore full menu" affordance from jumping to the top in this landing demo.
+var fullMenuLink = document.getElementById('fullMenuLink');
+if (fullMenuLink) fullMenuLink.addEventListener('click', function(e) {
+  e.preventDefault();
+  var c = document.getElementById('svcConfirm');
+  document.getElementById('svcMsg').textContent = 'The full menu is tailored to each restaurant.';
+  c.classList.add('on');
+  clearTimeout(svcTimer); svcTimer = setTimeout(function(){ c.classList.remove('on'); }, 2600);
+});
+
+// Initialize reveal state on first paint (important when reloading mid-page).
+revealOnScroll();
+</script>
 </body>
 </html>
