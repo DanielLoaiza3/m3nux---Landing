@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M3NUX — Digital Dining Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:    #070706;
+  --deep:   #0b0a08;
+  --surface:#111009;
+  --panel:  #17140e;
+  --gold:   #c4a24a;
+  --gold-d: rgba(196,162,74,.22);
+  --cream:  #ede5d4;
+  --c60:    rgba(237,229,212,.6);
+  --c30:    rgba(237,229,212,.3);
+  --c12:    rgba(237,229,212,.12);
+  --ease:   cubic-bezier(.22,1,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);color:var(--cream);
+  font-family:'Outfit',system-ui,sans-serif;
+  font-size:14px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+button{border:none;background:none;cursor:pointer;font:inherit;color:inherit}
+a{text-decoration:none;color:inherit}
+:focus-visible{outline:1.5px solid var(--gold);outline-offset:3px}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   NAV
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.nav{
+  position:fixed;inset:0 0 auto;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 48px;
+  border-bottom:1px solid transparent;
+  transition:background .5s var(--ease),padding .3s var(--ease),border-color .4s;
+}
+.nav.scrolled{
+  background:rgba(7,7,6,.93);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom-color:rgba(196,162,74,.1);
+  padding:14px 48px;
+}
+.nav__logo{display:flex;align-items:center;}
+.nav__logo img{
+  height:52px;width:auto;
+  filter:drop-shadow(0 0 8px rgba(196,162,74,.2));
+}
+.nav__links{display:flex;align-items:center;gap:36px}
+.nav__link{
+  font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--c30);transition:color .2s;
+}
+.nav__link:hover{color:var(--cream)}
+.nav__cta{
+  font-size:9.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);border:1px solid rgba(196,162,74,.35);padding:10px 24px;
+  transition:background .2s,color .2s,border-color .2s;
+}
+.nav__cta:hover{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HERO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.hero{
+  position:relative;height:100vh;min-height:680px;
+  display:grid;grid-template-columns:1fr 1fr;overflow:hidden;
+}
+.hero__left{
+  position:relative;z-index:3;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 56px 80px 64px;
+  background:linear-gradient(135deg,var(--ink) 0%,rgba(11,10,8,.97) 55%,rgba(11,10,8,.88) 100%);
+}
+.hero__eyebrow{
+  font-size:9px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:22px;
+  display:flex;align-items:center;gap:14px;opacity:.85;
+}
+.hero__eyebrow::before{content:'';display:block;width:22px;height:1px;background:var(--gold)}
+.hero__title{margin-bottom:28px;line-height:.92}
+.hero__t-sans{
+  display:block;
+  font-family:'Outfit',system-ui,sans-serif;
+  font-size:clamp(38px,4.8vw,64px);
+  font-weight:300;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--cream);
+}
+.hero__t-serif{
+  display:block;
+  font-family:'Cormorant',Georgia,serif;
+  font-size:clamp(52px,6.8vw,90px);
+  font-weight:600;letter-spacing:-.01em;
+  color:#fff;line-height:.9;
+}
+.hero__t-serif em{
+  font-style:italic;font-weight:300;color:var(--gold);
+}
+.hero__sub{
+  font-size:13.5px;font-weight:300;color:var(--c60);
+  line-height:1.8;margin-bottom:44px;max-width:290px;
+}
+.hero__actions{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.hero__cta-p{
+  display:inline-flex;flex-direction:column;align-items:flex-start;gap:10px;
+  font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);
+}
+.hero__cta-p:hover .hero__cta-line{height:28px;opacity:1}
+.hero__cta-line{
+  display:block;width:1px;height:20px;
+  background:var(--gold);opacity:.55;
+  transition:height .3s var(--ease),opacity .3s;
+}
+.hero__cta-s{
+  font-size:9.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--c30);border:1px solid var(--c12);padding:9px 20px;
+  transition:color .2s,border-color .2s;
+}
+.hero__cta-s:hover{color:var(--cream);border-color:var(--c30)}
+.hero__right{position:relative;overflow:hidden}
+.hero__photo{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center;
+  filter:brightness(.68) saturate(.82);
+  transition:transform 9s ease;
+}
+.hero:hover .hero__photo{transform:scale(1.025)}
+.hero__right::before{
+  content:'';position:absolute;inset:0;left:-1px;z-index:1;pointer-events:none;
+  background:linear-gradient(90deg,var(--ink) 0%,rgba(7,7,6,.42) 22%,transparent 58%);
+}
+.hero__right::after{
+  content:'';position:absolute;inset:auto 0 0;height:38%;z-index:1;pointer-events:none;
+  background:linear-gradient(0deg,var(--ink) 0%,transparent 100%);
+}
+.hero__scroll{
+  position:absolute;bottom:42px;left:50%;transform:translateX(-50%);
+  z-index:5;display:flex;flex-direction:column;align-items:center;gap:8px;
+  opacity:.45;pointer-events:none;
+}
+.hero__scroll-track{
+  width:1px;height:44px;
+  background:linear-gradient(0deg,var(--gold) 0%,transparent 100%);
+  position:relative;
+}
+.hero__scroll-track::before{
+  content:'';position:absolute;top:0;left:-3px;
+  width:7px;height:7px;border-radius:50%;background:var(--gold);
+  animation:trackDot 2.4s ease-in-out infinite;
+}
+@keyframes trackDot{
+  0%{top:0;opacity:1} 100%{top:38px;opacity:0}
+}
+.hero__scroll-txt{
+  font-size:7px;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--gold);text-align:center;line-height:1.5;
+}
+.hero__seam{
+  position:absolute;bottom:0;left:0;right:0;height:1px;z-index:10;
+  background:linear-gradient(90deg,transparent,var(--gold-d) 25%,var(--gold) 50%,var(--gold-d) 75%,transparent);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   EXPERIENCE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.experience{background:var(--deep);position:relative;padding-bottom:60px}
+.experience::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold-d) 30%,var(--gold) 50%,var(--gold-d) 70%,transparent);
+}
+.exp__table{
+  padding:32px 52px 0;
+  display:flex;align-items:center;gap:10px;
+}
+.exp__table-icon{color:var(--gold);opacity:.6}
+.exp__table-rule{flex:0 0 24px;height:1px;background:var(--gold);opacity:.35}
+.exp__table-lbl{
+  font-size:8.5px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold);opacity:.7;
+}
+.exp__q{text-align:center;padding:38px 24px 36px}
+.exp__q-text{
+  font-family:'Cormorant',Georgia,serif;
+  font-size:clamp(28px,3.8vw,48px);
+  font-weight:400;color:#fff;letter-spacing:-.01em;
+}
+.exp__q-rule{width:36px;height:1px;background:var(--gold);margin:14px auto 0;opacity:.4}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CARDS — horizontal drag scroll
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.cards-wrap{
+  position:relative;padding:0 52px;overflow:hidden;
+}
+/* Right fade hint */
+.cards-wrap::after{
+  content:'';pointer-events:none;
+  position:absolute;top:0;right:52px;bottom:0;width:130px;
+  background:linear-gradient(90deg,transparent,var(--deep) 90%);
+  z-index:2;
+}
+.cards-track{
+  display:flex;gap:10px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  padding-bottom:2px;
+  cursor:grab;
+  user-select:none;
+}
+.cards-track:active{cursor:grabbing}
+.cards-track::-webkit-scrollbar{display:none}
+
+.cat-card{
+  flex:0 0 22vw;min-width:190px;max-width:310px;
+  scroll-snap-align:start;
+  position:relative;border-radius:6px;overflow:hidden;
+  aspect-ratio:.62;background:var(--surface);cursor:pointer;
+  transition:transform .3s var(--ease),box-shadow .3s,flex-basis .4s var(--ease),opacity .4s,filter .4s;
+}
+.cat-card:focus-visible{outline:1.5px solid var(--gold);outline-offset:2px}
+.cat-card:hover{transform:translateY(-4px);box-shadow:0 20px 56px rgba(0,0,0,.6)}
+.cat-card[data-cat="special"]{flex-basis:24vw}
+.cat-card.receded{opacity:.25;filter:brightness(.45) saturate(.5);transform:scale(.96)}
+.cat-card.active{flex-basis:28vw;box-shadow:0 24px 64px rgba(0,0,0,.7)}
+.cat-card__img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:transform .5s var(--ease),filter .3s;
+  filter:brightness(.72) saturate(.88);
+}
+.cat-card:hover .cat-card__img{transform:scale(1.05);filter:brightness(.82) saturate(.96)}
+.cat-card.active .cat-card__img{filter:brightness(.88) saturate(1.02)}
+.cat-card__grad{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(7,7,6,0) 25%,rgba(7,7,6,.28) 55%,rgba(7,7,6,.9) 100%);
+}
+.cat-card__dot{
+  position:absolute;top:14px;right:14px;
+  width:5px;height:5px;border-radius:50%;
+  background:var(--gold);z-index:3;opacity:0;transition:opacity .3s;
+}
+.cat-card[data-cat="special"] .cat-card__dot{opacity:1}
+.cat-card__info{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:20px 18px;z-index:2;
+}
+.cat-card__name{
+  font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:#fff;margin-bottom:5px;line-height:1.3;
+}
+.cat-card[data-cat="special"] .cat-card__name{color:var(--gold)}
+.cat-card__sub{font-size:10px;font-weight:300;color:var(--c60);letter-spacing:.02em}
+.cat-card__line{
+  position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .35s var(--ease);
+}
+.cat-card.active .cat-card__line{transform:scaleX(1)}
+.cat-card:hover .cat-card__line{transform:scaleX(.4)}
+
+.exp__explore{text-align:center;padding:22px 0 0}
+.exp__explore a{
+  font-size:11px;font-weight:300;letter-spacing:.08em;
+  color:var(--gold);opacity:.5;
+  display:inline-flex;align-items:center;gap:10px;
+  transition:opacity .2s,gap .2s;
+}
+.exp__explore a:hover{opacity:.85;gap:16px}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SELECTION MOMENT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.sel-moment{
+  position:fixed;inset:0;z-index:200;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(7,7,6,.82);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  opacity:0;pointer-events:none;
+  transition:opacity .4s;
+}
+.sel-moment.on{opacity:1;pointer-events:auto}
+.sel-txt{
+  font-family:'Cormorant',Georgia,serif;
+  font-size:clamp(40px,5.5vw,68px);
+  font-weight:300;font-style:italic;color:var(--cream);text-align:center;
+  opacity:0;transform:translateY(10px);
+  transition:opacity .55s var(--ease) .12s,transform .55s var(--ease) .12s;
+}
+.sel-moment.on .sel-txt{opacity:1;transform:none}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   DISCOVERY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.discovery{background:var(--deep);display:none;border-top:1px solid rgba(196,162,74,.07)}
+.discovery.on{display:block}
+.disc__hero{position:relative;height:72vh;min-height:500px;overflow:hidden}
+.disc__img{
+  width:100%;height:100%;object-fit:cover;object-position:center 25%;
+  filter:brightness(.6) saturate(.82);
+}
+.disc__hero::before{
+  content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(90deg,
+    rgba(11,10,8,.97) 0%,
+    rgba(11,10,8,.72) 38%,
+    rgba(11,10,8,.18) 70%,
+    transparent 100%);
+}
+.disc__hero::after{
+  content:'';position:absolute;inset:auto 0 0;height:32%;z-index:1;pointer-events:none;
+  background:linear-gradient(0deg,var(--deep) 0%,transparent 100%);
+}
+.disc__copy{
+  position:absolute;left:64px;top:50%;transform:translateY(-50%);
+  z-index:3;max-width:400px;
+}
+.disc__lbl{
+  font-size:8.5px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold);opacity:.8;margin-bottom:18px;
+}
+.disc__name{
+  font-family:'Cormorant',Georgia,serif;
+  font-size:clamp(44px,5.5vw,72px);
+  font-weight:600;line-height:.88;letter-spacing:-.015em;
+  color:#fff;margin-bottom:14px;
+}
+.disc__components{
+  font-size:12.5px;font-weight:300;color:var(--c60);letter-spacing:.07em;margin-bottom:22px;
+}
+.disc__tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px}
+.disc__tag{
+  font-size:8px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);border:1px solid rgba(196,162,74,.28);padding:5px 11px;
+}
+.disc__price{
+  font-family:'Cormorant',Georgia,serif;font-size:26px;font-weight:300;
+  color:var(--c60);margin-bottom:22px;
+}
+.disc__rem{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--c60);cursor:pointer;background:none;border:none;padding:0;
+  transition:color .2s;
+}
+.disc__rem:hover{color:var(--gold)}
+.disc__rem.saved{color:var(--gold)}
+.disc__heart{font-size:13px;transition:transform .25s var(--ease)}
+.disc__rem:hover .disc__heart{transform:scale(1.25)}
+
+.disc__more{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.disc__sec{
+  position:relative;height:210px;overflow:hidden;cursor:pointer;background:var(--surface);
+}
+.disc__sec:hover .disc__sec-img{transform:scale(1.04);filter:brightness(.78)}
+.disc__sec-img{
+  width:100%;height:100%;object-fit:cover;
+  filter:brightness(.52) saturate(.78);
+  transition:transform .4s var(--ease),filter .3s;
+}
+.disc__sec::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(0deg,rgba(11,10,8,.88) 0%,transparent 58%);
+}
+.disc__sec-info{
+  position:absolute;bottom:0;left:0;right:0;padding:18px 24px;z-index:2;
+  display:flex;justify-content:space-between;align-items:flex-end;
+}
+.disc__sec-name{font-family:'Cormorant',Georgia,serif;font-size:18px;font-weight:500;color:#fff}
+.disc__sec-sub{font-size:11px;font-weight:300;color:var(--c30);margin-top:2px}
+.disc__sec-price{font-size:15px;color:var(--c60)}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   PICKS TOAST
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.picks-toast{
+  position:fixed;bottom:36px;left:50%;
+  transform:translateX(-50%) translateY(14px);
+  background:var(--panel);border-top:1px solid var(--gold);
+  padding:14px 28px;min-width:240px;
+  opacity:0;pointer-events:none;
+  transition:opacity .35s var(--ease),transform .35s var(--ease);
+  z-index:180;text-align:center;
+}
+.picks-toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+.picks-lbl{
+  font-size:8px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:8px;
+}
+.picks-item{
+  font-family:'Cormorant',Georgia,serif;font-size:16px;font-weight:300;color:var(--cream);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SERVICE RAIL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.svc-rail{
+  position:fixed;right:0;top:50%;
+  transform:translateY(-50%) translateX(8px);
+  z-index:150;
+  background:rgba(17,14,9,.95);
+  border:1px solid rgba(196,162,74,.13);border-right:none;
+  opacity:0;pointer-events:none;
+  transition:opacity .4s var(--ease),transform .4s var(--ease);
+}
+.svc-rail.on{opacity:1;pointer-events:auto;transform:translateY(-50%) translateX(0)}
+.svc-need{
+  font-size:6.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold);opacity:.55;
+  padding:12px 14px 8px;border-bottom:1px solid rgba(196,162,74,.08);text-align:center;
+}
+.svc-btn{
+  display:flex;flex-direction:column;align-items:center;gap:5px;
+  padding:11px 16px;cursor:pointer;
+  border-bottom:1px solid rgba(196,162,74,.06);
+  transition:background .15s;width:100%;
+}
+.svc-btn:last-child{border-bottom:none}
+.svc-btn:hover{background:rgba(196,162,74,.055)}
+.svc-btn svg{width:17px;height:17px;color:var(--cream);opacity:.5;transition:opacity .2s}
+.svc-btn:hover svg{opacity:.9}
+.svc-btn span{
+  font-size:7px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--c30);transition:color .2s;
+}
+.svc-btn:hover span{color:var(--c60)}
+.svc-confirm{
+  position:fixed;top:86px;right:76px;
+  background:var(--panel);border-left:2px solid var(--gold);
+  padding:12px 18px;z-index:160;
+  opacity:0;pointer-events:none;transform:translateX(10px);
+  transition:opacity .25s var(--ease),transform .25s var(--ease);
+  max-width:200px;
+}
+.svc-confirm.on{opacity:1;transform:none;pointer-events:auto}
+.svc-msg{
+  font-family:'Cormorant',Georgia,serif;
+  font-size:15px;font-weight:300;font-style:italic;color:#fff;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   MOBILE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@media(max-width:860px){
+  .nav{padding:16px 22px}.nav.scrolled{padding:12px 22px}
+  .nav__links{display:none}
+  .nav__logo img{height:40px}
+  .hero{grid-template-columns:1fr;position:relative}
+  .hero__left{
+    position:relative;z-index:3;padding:0 28px 60px;
+    background:linear-gradient(0deg,rgba(7,7,6,.98) 42%,rgba(7,7,6,.55) 100%);
+  }
+  .hero__right{position:absolute;inset:0;z-index:1}
+  .hero__right::before{
+    background:linear-gradient(0deg,var(--ink) 0%,rgba(7,7,6,.25) 50%,transparent 100%);
+  }
+  .exp__table{padding:26px 24px 0}
+  .cards-wrap{padding:0 20px}
+  .cards-wrap::after{right:20px;width:80px}
+  .cat-card{flex-basis:58vw;min-width:160px}
+  .cat-card[data-cat="special"]{flex-basis:64vw}
+  .cat-card.active{flex-basis:72vw}
+  .disc__hero{height:56vh}
+  .disc__copy{left:28px;max-width:85vw;top:auto;bottom:36px;transform:none}
+  .disc__hero::before{
+    background:linear-gradient(0deg,
+      rgba(11,10,8,.97) 0%,rgba(11,10,8,.55) 50%,rgba(11,10,8,.12) 100%);
+  }
+  .disc__name{font-size:clamp(36px,9vw,56px)}
+  .disc__more{grid-template-columns:1fr}
+  .svc-rail{
+    top:auto;bottom:0;right:0;left:0;
+    transform:translateY(100%);
+    display:flex;flex-direction:row;justify-content:space-around;
+    border:none;border-top:1px solid rgba(196,162,74,.13);border-right:none;
+    padding:8px 0 max(8px,env(safe-area-inset-bottom));
+    background:rgba(11,10,8,.96);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  }
+  .svc-rail.on{transform:translateY(0)}
+  .svc-need{display:none}
+  .svc-btn{
+    padding:8px 16px;border-bottom:none;
+    border-right:1px solid rgba(196,162,74,.06);flex:1;
+  }
+  .svc-btn:last-child{border-right:none}
+  .svc-confirm{top:auto;bottom:72px;right:16px;left:16px;max-width:none}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CONTACT / DEMO FORM
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.contact {
+  background: var(--ink);
+  padding: 120px 24px;
+  border-top: 1px solid rgba(196,162,74,.1);
+}
+.contact__inner {
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+}
+.contact__eyebrow {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: .8;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.contact__eyebrow::before,
+.contact__eyebrow::after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+  opacity: .4;
+}
+.contact__title {
+  font-family: 'Cormorant', Georgia, serif;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -.01em;
+  margin-bottom: 16px;
+}
+.contact__sub {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--c60);
+  margin-bottom: 48px;
+  line-height: 1.7;
+}
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.form-field input {
+  width: 100%;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(196,162,74,.15);
+  color: var(--cream);
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: .04em;
+  padding: 14px 18px;
+  outline: none;
+  transition: border-color .2s, background .2s;
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+.form-field input::placeholder { color: var(--c30); }
+.form-field input:focus {
+  border-color: rgba(196,162,74,.5);
+  background: rgba(255,255,255,.06);
+}
+.form-submit {
+  margin-top: 6px;
+  background: var(--gold);
+  color: var(--ink);
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  padding: 16px 32px;
+  cursor: pointer;
+  border: none;
+  transition: background .2s, opacity .2s;
+  width: 100%;
+}
+.form-submit:hover { background: #d4b05a; }
+.form-submit:disabled { opacity: .5; cursor: default; }
+.form-note {
+  font-size: 10px;
+  font-weight: 300;
+  color: var(--c30);
+  letter-spacing: .06em;
+  margin-top: 4px;
+}
+.contact__success {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 48px 0;
+}
+.contact__success.visible { display: flex; }
+.success-icon {
+  width: 48px; height: 48px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.success-title {
+  font-family: 'Cormorant', Georgia, serif;
+  font-size: 32px;
+  font-weight: 400;
+  color: #fff;
+}
+.success-sub {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--c60);
+  line-height: 1.7;
+  max-width: 340px;
+}
+@media(max-width:640px) {
+  .form-row { grid-template-columns: 1fr; }
+  .contact { padding: 80px 24px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ━━━━━━━━━━━━━━━━ NAV ━━━━━━━━━━━━━━━━ -->
+<nav class="nav" id="nav" aria-label="M3NUX navigation">
+  <a href="#" class="nav__logo" aria-label="M3NUX — Digital Dining Intelligence">
+    <img
+      src="data:image/png;base64,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"
+      alt="M3NUX Digital Dining Intelligence"
+      width="77" height="56">
+  </a>
+  <div class="nav__links" role="list">
+    <a href="#experience" class="nav__link" role="listitem">How it works</a>
+    <a href="#" class="nav__link" role="listitem">For restaurants</a>
+    <a href="#" class="nav__link" role="listitem">Results</a>
+    <a href="#" class="nav__link" role="listitem">Demo</a>
+  </div>
+  <a href="#contact" class="nav__cta">Request a demo</a>
+</nav>
+
+<!-- ━━━━━━━━━━━━━━━━ HERO ━━━━━━━━━━━━━━━━ -->
+<section class="hero" aria-labelledby="hero-h1">
+  <div class="hero__left">
+    <div class="hero__eyebrow">Digital Dining Intelligence</div>
+    <h1 class="hero__title" id="hero-h1">
+      <span class="hero__t-sans">Your guest</span>
+      <span class="hero__t-serif">Already<br><em>Knows.</em></span>
+    </h1>
+    <p class="hero__sub">
+      Before your server arrives,<br>the decision is already taking shape.
+    </p>
+    <div class="hero__actions">
+      <a href="#experience" class="hero__cta-p" aria-label="Experience M3NUX">
+        Experience M3NUX
+        <span class="hero__cta-line" aria-hidden="true"></span>
+      </a>
+      <a href="#contact" class="hero__cta-s">Request a demo</a>
+    </div>
+  </div>
+  <div class="hero__right" aria-hidden="true">
+    <img class="hero__photo"
+      src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=82&auto=format&fit=crop"
+      alt="" loading="eager" decoding="async">
+  </div>
+  <div class="hero__scroll" aria-hidden="true">
+    <div class="hero__scroll-track"></div>
+    <div class="hero__scroll-txt">Scroll to enter<br>the experience</div>
+  </div>
+  <div class="hero__seam" aria-hidden="true"></div>
+</section>
+
+<!-- ━━━━━━━━━━━━━━━━ EXPERIENCE ━━━━━━━━━━━━━━━━ -->
+<section class="experience" id="experience" aria-label="M3NUX experience">
+
+  <div class="exp__table" aria-hidden="true">
+    <div class="exp__table-icon">
+      <svg width="15" height="12" viewBox="0 0 15 12" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round">
+        <rect x=".7" y=".7" width="13.6" height="7.8" rx=".8"/>
+        <line x1="4.2" y1="8.5" x2="3.5" y2="11.3"/>
+        <line x1="10.8" y1="8.5" x2="11.5" y2="11.3"/>
+      </svg>
+    </div>
+    <div class="exp__table-rule"></div>
+    <div class="exp__table-lbl">Table 07</div>
+  </div>
+
+  <div class="exp__q">
+    <h2 class="exp__q-text">What sounds good tonight?</h2>
+    <div class="exp__q-rule" aria-hidden="true"></div>
+  </div>
+
+  <div class="cards-wrap">
+    <div class="cards-track" id="cardsTrack" role="list" aria-label="Choose your dining mood">
+
+      <div class="cat-card" data-cat="light" role="button" tabindex="0"
+        aria-label="Light — Fresh and balanced"
+        onclick="selectCat(this)"
+        onkeydown="handleKey(event,this)">
+        <img class="cat-card__img"
+          src="https://images.unsplash.com/photo-1535400255456-984e0a5d7c1f?w=500&q=82&auto=format&fit=crop&crop=center"
+          alt="" loading="lazy" decoding="async">
+        <div class="cat-card__grad" aria-hidden="true"></div>
+        <div class="cat-card__info">
+          <div class="cat-card__name">Light</div>
+          <div class="cat-card__sub">Fresh &amp; Balanced</div>
+        </div>
+        <div class="cat-card__line" aria-hidden="true"></div>
+      </div>
+
+      <div class="cat-card" data-cat="comforting" role="button" tabindex="0"
+        aria-label="Comforting — Warm and satisfying"
+        onclick="selectCat(this)"
+        onkeydown="handleKey(event,this)">
+        <img class="cat-card__img"
+          src="https://images.unsplash.com/photo-1547592180-85f173990554?w=500&q=82&auto=format&fit=crop&crop=center"
+          alt="" loading="lazy" decoding="async">
+        <div class="cat-card__grad" aria-hidden="true"></div>
+        <div class="cat-card__info">
+          <div class="cat-card__name">Comforting</div>
+          <div class="cat-card__sub">Warm &amp; Satisfying</div>
+        </div>
+        <div class="cat-card__line" aria-hidden="true"></div>
+      </div>
+
+      <div class="cat-card" data-cat="bold" role="button" tabindex="0"
+        aria-label="Bold — Rich and intense"
+        onclick="selectCat(this)"
+        onkeydown="handleKey(event,this)">
+        <img class="cat-card__img"
+          src="https://images.unsplash.com/photo-1544025162-d76694265947?w=500&q=82&auto=format&fit=crop&crop=center"
+          alt="" loading="lazy" decoding="async">
+        <div class="cat-card__grad" aria-hidden="true"></div>
+        <div class="cat-card__info">
+          <div class="cat-card__name">Bold</div>
+          <div class="cat-card__sub">Rich &amp; Intense</div>
+        </div>
+        <div class="cat-card__line" aria-hidden="true"></div>
+      </div>
+
+      <div class="cat-card" data-cat="special" role="button" tabindex="0"
+        aria-label="Something Special — Elevated and unique"
+        onclick="selectCat(this)"
+        onkeydown="handleKey(event,this)">
+        <div class="cat-card__dot" aria-hidden="true"></div>
+        <img class="cat-card__img"
+          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=82&auto=format&fit=crop&crop=center"
+          alt="" loading="lazy" decoding="async">
+        <div class="cat-card__grad" aria-hidden="true"></div>
+        <div class="cat-card__info">
+          <div class="cat-card__name">Something<br>Special</div>
+          <div class="cat-card__sub">Elevated &amp; Unique</div>
+        </div>
+        <div class="cat-card__line" aria-hidden="true"></div>
+      </div>
+
+      <div class="cat-card" data-cat="vegetarian" role="button" tabindex="0"
+        aria-label="Vegetarian — Plant forward"
+        onclick="selectCat(this)"
+        onkeydown="handleKey(event,this)">
+        <img class="cat-card__img"
+          src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&q=82&auto=format&fit=crop&crop=center"
+          alt="" loading="lazy" decoding="async">
+        <div class="cat-card__grad" aria-hidden="true"></div>
+        <div class="cat-card__info">
+          <div class="cat-card__name">Vegetarian</div>
+          <div class="cat-card__sub">Plant-Forward</div>
+        </div>
+        <div class="cat-card__line" aria-hidden="true"></div>
+      </div>
+
+      <div class="cat-card" data-cat="surprise" role="button" tabindex="0"
+        aria-label="Surprise Me — Chef's selection"
+        onclick="selectCat(this)"
+        onkeydown="handleKey(event,this)">
+        <img class="cat-card__img"
+          src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=500&q=82&auto=format&fit=crop&crop=center"
+          alt="" loading="lazy" decoding="async">
+        <div class="cat-card__grad" aria-hidden="true"></div>
+        <div class="cat-card__info">
+          <div class="cat-card__name">Surprise Me</div>
+          <div class="cat-card__sub">Chef's Selection</div>
+        </div>
+        <div class="cat-card__line" aria-hidden="true"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="exp__explore">
+    <a href="#" aria-label="Explore the full menu">
+      Explore the full menu
+      <svg width="20" height="9" viewBox="0 0 20 9" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true">
+        <line x1="0" y1="4.5" x2="17.5" y2="4.5"/>
+        <polyline points="13.5,1 17.5,4.5 13.5,8"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<!-- ━━━━━━━━━━━━━━━━ SELECTION MOMENT ━━━━━━━━━━━━━━━━ -->
+<div class="sel-moment" id="selMoment" role="status" aria-live="assertive" aria-hidden="true">
+  <div class="sel-txt">Good choice.</div>
+</div>
+
+<!-- ━━━━━━━━━━━━━━━━ DISCOVERY ━━━━━━━━━━━━━━━━ -->
+<section class="discovery" id="discovery" aria-label="Dish recommendation">
+  <div class="disc__hero">
+    <img class="disc__img"
+      src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=1600&q=85&auto=format&fit=crop&crop=center"
+      alt="Australian Wagyu — Potato Purée, Truffle Jus, Seasonal Vegetables"
+      loading="lazy" decoding="async">
+    <div class="disc__copy">
+      <div class="disc__lbl">Chef's Recommendation · Tonight</div>
+      <h2 class="disc__name">Australian<br>Wagyu</h2>
+      <p class="disc__components">Potato Purée · Truffle Jus · Seasonal Vegetables</p>
+      <div class="disc__tags" aria-label="Dish qualities">
+        <span class="disc__tag">Rich</span>
+        <span class="disc__tag">Refined</span>
+        <span class="disc__tag">Chef Recommended</span>
+      </div>
+      <div class="disc__price" aria-label="Price: 68 dollars">$68</div>
+      <button class="disc__rem" id="remBtn" onclick="rememberDish()" aria-label="Remember this dish" aria-pressed="false">
+        <span class="disc__heart" aria-hidden="true">♡</span>
+        <span id="remTxt">Remember this</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="disc__more" aria-label="More to discover">
+    <div class="disc__sec" role="button" tabindex="0"
+      aria-label="Seared Sea Bass — 42 dollars"
+      onclick="" onkeydown="if(event.key==='Enter')this.click()">
+      <img class="disc__sec-img"
+        src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&q=75&auto=format&fit=crop&crop=center"
+        alt="" loading="lazy" decoding="async">
+      <div class="disc__sec-info">
+        <div>
+          <div class="disc__sec-name">Seared Sea Bass</div>
+          <div class="disc__sec-sub">Saffron Beurre Blanc · Fennel</div>
+        </div>
+        <div class="disc__sec-price">$42</div>
+      </div>
+    </div>
+    <div class="disc__sec" role="button" tabindex="0"
+      aria-label="Braised Short Rib — 54 dollars"
+      onclick="" onkeydown="if(event.key==='Enter')this.click()">
+      <img class="disc__sec-img"
+        src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=75&auto=format&fit=crop&crop=center"
+        alt="" loading="lazy" decoding="async">
+      <div class="disc__sec-info">
+        <div>
+          <div class="disc__sec-name">Braised Short Rib</div>
+          <div class="disc__sec-sub">72h Braise · Bone Jus · Celery Root</div>
+        </div>
+        <div class="disc__sec-price">$54</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━━━━━━━━━━━━━━ PICKS TOAST ━━━━━━━━━━━━━━━━ -->
+<div class="picks-toast" id="picksToast" role="status" aria-live="polite" aria-atomic="true">
+  <div class="picks-lbl">Your picks</div>
+  <div id="picksItems"></div>
+</div>
+
+<!-- ━━━━━━━━━━━━━━━━ SERVICE RAIL ━━━━━━━━━━━━━━━━ -->
+<aside class="svc-rail" id="svcRail" aria-label="Guest service">
+  <div class="svc-need" aria-hidden="true">Need something?</div>
+  <button class="svc-btn" onclick="trigSvc('Water is on the way.')" aria-label="Request water">
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true">
+      <path d="M10 2Q10 2 4 10C4 14.5 6.8 17 10 17C13.2 17 16 14.5 16 10Q10 2 10 2Z"/>
+    </svg>
+    <span>Water</span>
+  </button>
+  <button class="svc-btn" onclick="trigSvc('Your server is on the way.')" aria-label="Request server">
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true">
+      <circle cx="10" cy="6" r="3.2"/>
+      <path d="M3.5 18C3.5 13.5 6.5 11 10 11C13.5 11 16.5 13.5 16.5 18"/>
+    </svg>
+    <span>Server</span>
+  </button>
+  <button class="svc-btn" onclick="trigSvc('Your dessert menu is coming.')" aria-label="Request dessert menu">
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true">
+      <path d="M6 16L6 11C6 8.2 7.8 6.5 10 6.5C12.2 6.5 14 8.2 14 11L14 16"/>
+      <line x1="4" y1="16" x2="16" y2="16"/>
+      <line x1="10" y1="6.5" x2="10" y2="4"/>
+      <circle cx="10" cy="3" r=".8" fill="currentColor"/>
+    </svg>
+    <span>Dessert</span>
+  </button>
+  <button class="svc-btn" onclick="trigSvc('Your check will arrive shortly.')" aria-label="Request check">
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true">
+      <rect x="3" y="3" width="14" height="14" rx=".8"/>
+      <path d="M7 10L9.2 12.5L13.5 7.5"/>
+    </svg>
+    <span>Check</span>
+  </button>
+</aside>
+
+<div class="svc-confirm" id="svcConfirm" role="alert" aria-live="assertive">
+  <div class="svc-msg" id="svcMsg"></div>
+</div>
+
+<script>
+// ── Nav + service rail on scroll ──
+const $nav     = document.getElementById('nav');
+const $rail    = document.getElementById('svcRail');
+const $exp     = document.getElementById('experience');
+
+window.addEventListener('scroll', function() {
+  $nav.classList.toggle('scrolled', window.scrollY > 55);
+  var rect = $exp.getBoundingClientRect();
+  $rail.classList.toggle('on', rect.top < window.innerHeight * 0.6);
+}, {passive: true});
+
+// ── Drag to scroll cards ──
+var track = document.getElementById('cardsTrack');
+var dragging = false, startX = 0, scrollLeft = 0;
+track.addEventListener('mousedown', function(e) {
+  dragging = true;
+  startX = e.pageX - track.offsetLeft;
+  scrollLeft = track.scrollLeft;
+});
+document.addEventListener('mouseup', function() { dragging = false; });
+track.addEventListener('mousemove', function(e) {
+  if (!dragging) return;
+  e.preventDefault();
+  var x = e.pageX - track.offsetLeft;
+  track.scrollLeft = scrollLeft - (x - startX) * 1.15;
+});
+
+// ── Category selection ──
+var selTimer = null;
+function selectCat(el) {
+  var cards = document.querySelectorAll('.cat-card');
+  cards.forEach(function(c) {
+    c.classList.remove('active', 'receded');
+    if (c !== el) c.classList.add('receded');
+  });
+  el.classList.add('active');
+
+  var mom = document.getElementById('selMoment');
+  mom.removeAttribute('aria-hidden');
+  mom.classList.add('on');
+
+  clearTimeout(selTimer);
+  selTimer = setTimeout(function() {
+    mom.classList.remove('on');
+    mom.setAttribute('aria-hidden', 'true');
+    cards.forEach(function(c) { c.classList.remove('receded', 'active'); });
+    var disc = document.getElementById('discovery');
+    disc.classList.add('on');
+    setTimeout(function() {
+      disc.scrollIntoView({behavior: 'smooth', block: 'start'});
+    }, 60);
+  }, 1100);
+}
+
+function handleKey(e, el) {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    selectCat(el);
+  }
+}
+
+// ── Remember This ──
+var picks = [];
+function rememberDish() {
+  var btn = document.getElementById('remBtn');
+  if (btn.classList.contains('saved')) return;
+  var name = 'Australian Wagyu';
+  picks.push(name);
+  btn.classList.add('saved');
+  btn.setAttribute('aria-pressed', 'true');
+  btn.querySelector('.disc__heart').textContent = '♥';
+  document.getElementById('remTxt').textContent = 'Remembered';
+
+  var items = document.getElementById('picksItems');
+  items.innerHTML = picks.map(function(p) {
+    return '<div class="picks-item">' + p + '</div>';
+  }).join('');
+  var toast = document.getElementById('picksToast');
+  toast.classList.add('on');
+  clearTimeout(window._tt);
+  window._tt = setTimeout(function() { toast.classList.remove('on'); }, 3000);
+}
+
+// ── Service ──
+var svcTimer = null;
+function trigSvc(msg) {
+  document.getElementById('svcMsg').textContent = msg;
+  var conf = document.getElementById('svcConfirm');
+  conf.classList.add('on');
+  clearTimeout(svcTimer);
+  svcTimer = setTimeout(function() { conf.classList.remove('on'); }, 2600);
+}
+
+// ── Demo form submission ──
+function submitForm() {
+  var restaurant = document.getElementById('fRestaurant').value.trim();
+  var name = document.getElementById('fName').value.trim();
+  var email = document.getElementById('fEmail').value.trim();
+  var btn = document.getElementById('formSubmit');
+
+  if (!restaurant || !name || !email) {
+    btn.textContent = 'Please fill required fields';
+    setTimeout(function() { btn.textContent = 'Show me my M3NUX →'; }, 2200);
+    return;
+  }
+  var emailReg = /^[^\s@]+@[^^\s@]+\.[^\s@]+$/;
+  if (!emailReg.test(email)) {
+    btn.textContent = 'Check your email address';
+    setTimeout(function() { btn.textContent = 'Show me my M3NUX →'; }, 2200);
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  // Formspree endpoint — replace YOUR_ID with actual form ID
+  fetch('https://formspree.io/f/YOUR_ID', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({ restaurant: restaurant, name: name, email: email,
+      social: document.getElementById('fSocial').value.trim() })
+  })
+  .catch(function() {}) // Silent fail — still show success
+  .finally(function() {
+    document.getElementById('contactForm').style.display = 'none';
+    var s = document.getElementById('contactSuccess');
+    s.classList.add('visible');
+  });
+}
+
+</script>
+
+<!-- ━━━━━━━━━━━━━━━━ CONTACT / REQUEST DEMO ━━━━━━━━━━━━━━━━ -->
+<section id="contact" class="contact" aria-label="Request a demo">
+  <div class="contact__inner">
+    <div class="contact__eyebrow">Private Demonstration</div>
+    <h2 class="contact__title">What would M3NUX<br>look like in your restaurant?</h2>
+    <p class="contact__sub">Show us your restaurant. We'll show you the experience.</p>
+
+    <div class="contact__form" id="contactForm">
+      <div class="form-row">
+        <div class="form-field">
+          <input type="text" id="fRestaurant" placeholder="Restaurant name" autocomplete="off" aria-label="Restaurant name">
+        </div>
+        <div class="form-field">
+          <input type="text" id="fName" placeholder="Your name" autocomplete="off" aria-label="Your name">
+        </div>
+      </div>
+      <div class="form-field">
+        <input type="email" id="fEmail" placeholder="Email address" autocomplete="off" aria-label="Email address">
+      </div>
+      <div class="form-field">
+        <input type="text" id="fSocial" placeholder="Website or Instagram (optional)" autocomplete="off" aria-label="Website or Instagram">
+      </div>
+      <button class="form-submit" id="formSubmit" onclick="submitForm()">
+        Show me my M3NUX &rarr;
+      </button>
+      <p class="form-note">Private demonstration &nbsp;&middot;&nbsp; No commitment</p>
+    </div>
+
+    <div class="contact__success" id="contactSuccess" aria-live="polite">
+      <div class="success-icon">&#10003;</div>
+      <div class="success-title">You're on the list.</div>
+      <div class="success-sub">We'll reach out within 48 hours to schedule your private demo.</div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
