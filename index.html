@@ -8,7 +8,6 @@
 <meta property="og:title" content="M3NUX — Digital Dining Intelligence">
 <meta property="og:description" content="The space between seeing the menu and speaking to your server, redesigned.">
 <meta property="og:type" content="website">
-<meta name="referrer" content="no-referrer-when-downgrade">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -303,20 +302,6 @@ footer{background:var(--ink);padding:24px 64px;display:flex;align-items:center;j
 </style>
 </head>
 <body>
-
-<script>
-// Clear any stale state immediately on load
-(function(){
-  var disc = document.getElementById('discovery');
-  if(disc) { disc.classList.remove('on'); disc.style.display = 'none'; }
-})();
-</script>
-
-
-<script>
-(function(){var d=document.getElementById('discovery');if(d){d.classList.remove('on');d.style.display='none';}})();
-</script>
-
 <nav class="nav" id="nav" aria-label="M3NUX navigation">
   <a href="#" class="nav__logo" aria-label="M3NUX">
     <img src="data:image/png;base64,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" alt="M3NUX Digital Dining Intelligence" width="71" height="52">
@@ -344,7 +329,7 @@ footer{background:var(--ink);padding:24px 64px;display:flex;align-items:center;j
     </div>
   </div>
   <div class="hero__right" aria-hidden="true">
-    <img class="hero__photo" referrerpolicy="no-referrer" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=82&auto=format&fit=crop" alt="" loading="eager" decoding="async">
+    <img class="hero__photo" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=82&auto=format&fit=crop" alt="" loading="eager" decoding="async">
   </div>
   <div class="hero__scroll" aria-hidden="true"><div class="hero__scroll-track"></div><div class="hero__scroll-txt">Scroll to enter<br>the experience</div></div>
   <div class="hero__seam" aria-hidden="true"></div>
@@ -359,38 +344,38 @@ footer{background:var(--ink);padding:24px 64px;display:flex;align-items:center;j
   <div class="cards-wrap">
     <div class="cards-track" id="cardsTrack" role="list" aria-label="Choose your dining mood">
       <div class="cat-card" data-cat="light" role="button" tabindex="0" aria-label="Light — Fresh and balanced" onclick="selectCat(this)" onkeydown="handleKey(event,this)">
-        <img class="cat-card__img" referrerpolicy="no-referrer" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1519984388953-d2406bc725e1?w=500&q=82&auto=format&fit=crop&crop=center" alt="" loading="eager" decoding="async">
+        <img class="cat-card__img" src="https://images.unsplash.com/photo-1519984388953-d2406bc725e1?w=500&q=82&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
         <div class="cat-card__grad" aria-hidden="true"></div>
         <div class="cat-card__info"><div class="cat-card__name">Light</div><div class="cat-card__sub">Fresh &amp; Balanced</div></div>
         <div class="cat-card__line" aria-hidden="true"></div>
       </div>
       <div class="cat-card" data-cat="comforting" role="button" tabindex="0" aria-label="Comforting — Warm and satisfying" onclick="selectCat(this)" onkeydown="handleKey(event,this)">
-        <img class="cat-card__img" referrerpolicy="no-referrer" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1547592180-85f173990554?w=500&q=82&auto=format&fit=crop&crop=center" alt="" loading="eager" decoding="async">
+        <img class="cat-card__img" src="https://images.unsplash.com/photo-1547592180-85f173990554?w=500&q=82&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
         <div class="cat-card__grad" aria-hidden="true"></div>
         <div class="cat-card__info"><div class="cat-card__name">Comforting</div><div class="cat-card__sub">Warm &amp; Satisfying</div></div>
         <div class="cat-card__line" aria-hidden="true"></div>
       </div>
       <div class="cat-card" data-cat="bold" role="button" tabindex="0" aria-label="Bold — Rich and intense" onclick="selectCat(this)" onkeydown="handleKey(event,this)">
-        <img class="cat-card__img" referrerpolicy="no-referrer" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1544025162-d76694265947?w=500&q=82&auto=format&fit=crop&crop=center" alt="" loading="eager" decoding="async">
+        <img class="cat-card__img" src="https://images.unsplash.com/photo-1544025162-d76694265947?w=500&q=82&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
         <div class="cat-card__grad" aria-hidden="true"></div>
         <div class="cat-card__info"><div class="cat-card__name">Bold</div><div class="cat-card__sub">Rich &amp; Intense</div></div>
         <div class="cat-card__line" aria-hidden="true"></div>
       </div>
       <div class="cat-card" data-cat="special" role="button" tabindex="0" aria-label="Something Special — Elevated and unique" onclick="selectCat(this)" onkeydown="handleKey(event,this)">
         <div class="cat-card__dot" aria-hidden="true"></div>
-        <img class="cat-card__img" referrerpolicy="no-referrer" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=500&q=85&auto=format&fit=crop&crop=center" alt="" loading="eager" decoding="async">
+        <img class="cat-card__img" src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=500&q=85&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
         <div class="cat-card__grad" aria-hidden="true"></div>
         <div class="cat-card__info"><div class="cat-card__name">Something<br>Special</div><div class="cat-card__sub">Elevated &amp; Unique</div></div>
         <div class="cat-card__line" aria-hidden="true"></div>
       </div>
       <div class="cat-card" data-cat="vegetarian" role="button" tabindex="0" aria-label="Vegetarian — Plant forward" onclick="selectCat(this)" onkeydown="handleKey(event,this)">
-        <img class="cat-card__img" referrerpolicy="no-referrer" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&q=82&auto=format&fit=crop&crop=center" alt="" loading="eager" decoding="async">
+        <img class="cat-card__img" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&q=82&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
         <div class="cat-card__grad" aria-hidden="true"></div>
         <div class="cat-card__info"><div class="cat-card__name">Vegetarian</div><div class="cat-card__sub">Plant-Forward</div></div>
         <div class="cat-card__line" aria-hidden="true"></div>
       </div>
       <div class="cat-card" data-cat="surprise" role="button" tabindex="0" aria-label="Surprise Me — Chef selection" onclick="selectCat(this)" onkeydown="handleKey(event,this)">
-        <img class="cat-card__img" referrerpolicy="no-referrer" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=500&q=82&auto=format&fit=crop&crop=center" alt="" loading="eager" decoding="async">
+        <img class="cat-card__img" src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=500&q=82&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
         <div class="cat-card__grad" aria-hidden="true"></div>
         <div class="cat-card__info"><div class="cat-card__name">Surprise Me</div><div class="cat-card__sub">Chef's Selection</div></div>
         <div class="cat-card__line" aria-hidden="true"></div>
@@ -404,7 +389,7 @@ footer{background:var(--ink);padding:24px 64px;display:flex;align-items:center;j
 
 <section class="discovery" id="discovery" aria-label="Dish recommendation">
   <div class="disc__hero">
-    <img class="disc__img" referrerpolicy="no-referrer" referrerpolicy="no-referrer" id="discImg" src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=1600&q=85&auto=format&fit=crop&crop=center" alt="Australian Wagyu" loading="lazy" decoding="async">
+    <img class="disc__img" id="discImg" src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=1600&q=85&auto=format&fit=crop&crop=center" alt="Australian Wagyu" loading="lazy" decoding="async">
     <div class="disc__copy">
       <div class="disc__lbl" id="discLbl">Tonight, we'd start here.</div>
       <h2 class="disc__name" id="discName">Australian<br>Wagyu</h2>
@@ -418,11 +403,11 @@ footer{background:var(--ink);padding:24px 64px;display:flex;align-items:center;j
   </div>
   <div class="disc__more">
     <div class="disc__sec" role="button" tabindex="0" aria-label="Seared Sea Bass — 42 dollars" onkeydown="if(event.key==='Enter')this.click()">
-      <img class="disc__sec-img" referrerpolicy="no-referrer" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&q=75&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
+      <img class="disc__sec-img" src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&q=75&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
       <div class="disc__sec-info"><div><div class="disc__sec-name">Seared Sea Bass</div><div class="disc__sec-sub">Saffron Beurre Blanc · Fennel</div></div><div class="disc__sec-price">$42</div></div>
     </div>
     <div class="disc__sec" role="button" tabindex="0" aria-label="Braised Short Rib — 54 dollars" onkeydown="if(event.key==='Enter')this.click()">
-      <img class="disc__sec-img" referrerpolicy="no-referrer" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=75&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
+      <img class="disc__sec-img" src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=75&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
       <div class="disc__sec-info"><div><div class="disc__sec-name">Braised Short Rib</div><div class="disc__sec-sub">72h Braise · Bone Jus · Celery Root</div></div><div class="disc__sec-price">$54</div></div>
     </div>
   </div>
@@ -517,7 +502,7 @@ footer{background:var(--ink);padding:24px 64px;display:flex;align-items:center;j
   <h2 class="vid__headline">45 seconds.</h2>
   <p class="vid__sub">That's enough to understand the difference.</p>
   <div class="vid__player">
-    <video id="mainVideo" referrerpolicy="no-referrer" preload="none" poster="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80&auto=format&fit=crop" aria-label="M3NUX overview — 45 second demonstration">
+    <video id="mainVideo" preload="none" poster="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80&auto=format&fit=crop" aria-label="M3NUX overview — 45 second demonstration">
       <source src="M3NUX.mp4" type="video/mp4">
       Your browser does not support video playback.
     </video>
@@ -537,19 +522,19 @@ footer{background:var(--ink);padding:24px 64px;display:flex;align-items:center;j
 <section class="transform" aria-label="Your restaurant, your M3NUX">
   <div class="transform__grid">
     <div class="transform__cell" id="tc1">
-      <img class="transform__cell-img" referrerpolicy="no-referrer" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1519984388953-d2406bc725e1?w=500&q=82&auto=format&fit=crop&crop=center" alt="" loading="eager" decoding="async">
+      <img class="transform__cell-img" src="https://images.unsplash.com/photo-1519984388953-d2406bc725e1?w=500&q=82&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
       <div class="transform__cell-label"><div class="transform__cell-num">Your</div><div class="transform__cell-name">Menu.</div></div>
     </div>
     <div class="transform__cell" id="tc2">
-      <img class="transform__cell-img" referrerpolicy="no-referrer" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=800&q=82&auto=format&fit=crop&crop=center" alt="" loading="eager" decoding="async">
+      <img class="transform__cell-img" src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=800&q=82&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
       <div class="transform__cell-label"><div class="transform__cell-num">Your</div><div class="transform__cell-name">Food.</div></div>
     </div>
     <div class="transform__cell" id="tc3">
-      <img class="transform__cell-img" referrerpolicy="no-referrer" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=82&auto=format&fit=crop" alt="" loading="eager" decoding="async">
+      <img class="transform__cell-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=82&auto=format&fit=crop" alt="" loading="lazy" decoding="async">
       <div class="transform__cell-label"><div class="transform__cell-num">Your</div><div class="transform__cell-name">Brand.</div></div>
     </div>
     <div class="transform__cell" id="tc4">
-      <img class="transform__cell-img" referrerpolicy="no-referrer" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=500&q=85&auto=format&fit=crop&crop=center" alt="" loading="eager" decoding="async">
+      <img class="transform__cell-img" src="https://images.unsplash.com/photo-1778795218701-b14dbb64f868?w=800&q=82&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
       <div class="transform__cell-label"><div class="transform__cell-num">Your</div><div class="transform__cell-name"><em>M3NUX.</em></div></div>
     </div>
   </div>
@@ -621,12 +606,12 @@ track.addEventListener('mousemove',function(e){if(!dragging)return;e.preventDefa
 var selTimer=null;
 var currentDish='Australian Wagyu';
 var menuData={
-  light:{name:'Seared<br>Sea Bass',dish:'Seared Sea Bass',components:'Citrus Beurre Blanc · Shaved Fennel · Garden Herbs',tags:['Fresh','Delicate','Chef Recommended'],price:'$42',lbl:"Tonight, we'd start here.",image:'https://images.images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=1600&q=82&auto=format&fit=crop&crop=center'},
-  comforting:{name:'Braised<br>Short Rib',dish:'Braised Short Rib',components:'Potato Purée · Bone Jus · Glazed Root Vegetables',tags:['Warm','Slow Braised','Comforting'],price:'$54',lbl:"Tonight, we'd start here.",image:'https://images.images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1600&q=82&auto=format&fit=crop&crop=center'},
-  bold:{name:'Charred<br>Ribeye',dish:'Charred Ribeye',components:'Smoked Chili Jus · Crispy Shallot · Fire-Roasted Pepper',tags:['Intense','Charred','Bold'],price:'$58',lbl:"Tonight, we'd start here.",image:'https://images.images.unsplash.com/photo-1544025162-d76694265947?w=1600&q=82&auto=format&fit=crop&crop=center'},
+  light:{name:'Seared<br>Sea Bass',dish:'Seared Sea Bass',components:'Citrus Beurre Blanc · Shaved Fennel · Garden Herbs',tags:['Fresh','Delicate','Chef Recommended'],price:'$42',lbl:"Tonight, we'd start here.",image:'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=1600&q=82&auto=format&fit=crop&crop=center'},
+  comforting:{name:'Braised<br>Short Rib',dish:'Braised Short Rib',components:'Potato Purée · Bone Jus · Glazed Root Vegetables',tags:['Warm','Slow Braised','Comforting'],price:'$54',lbl:"Tonight, we'd start here.",image:'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1600&q=82&auto=format&fit=crop&crop=center'},
+  bold:{name:'Charred<br>Ribeye',dish:'Charred Ribeye',components:'Smoked Chili Jus · Crispy Shallot · Fire-Roasted Pepper',tags:['Intense','Charred','Bold'],price:'$58',lbl:"Tonight, we'd start here.",image:'https://images.unsplash.com/photo-1544025162-d76694265947?w=1600&q=82&auto=format&fit=crop&crop=center'},
   special:{name:'Australian<br>Wagyu',dish:'Australian Wagyu',components:'Potato Purée · Truffle Jus · Seasonal Vegetables',tags:['Rich','Refined','Chef Recommended'],price:'$68',lbl:"Tonight, we'd start here.",image:'https://images.unsplash.com/photo-1600891964092-4316c288032e?w=1600&q=85&auto=format&fit=crop&crop=center'},
-  vegetarian:{name:'Wild Mushroom<br>Risotto',dish:'Wild Mushroom Risotto',components:'Forest Mushrooms · Aged Parmesan · Herb Oil',tags:['Vegetarian','Earthy','Silky'],price:'$36',lbl:"Tonight, we'd start here.",image:'https://images.images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1600&q=82&auto=format&fit=crop&crop=center'},
-  surprise:{name:"Chef's<br>Selection",dish:"Chef's Selection",components:'A changing composition selected by the chef for tonight',tags:['Unexpected','Seasonal','Chef Selection'],price:'Market',lbl:'Tonight, let the chef choose.',image:'https://images.images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=1600&q=82&auto=format&fit=crop&crop=center'}
+  vegetarian:{name:'Wild Mushroom<br>Risotto',dish:'Wild Mushroom Risotto',components:'Forest Mushrooms · Aged Parmesan · Herb Oil',tags:['Vegetarian','Earthy','Silky'],price:'$36',lbl:"Tonight, we'd start here.",image:'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1600&q=82&auto=format&fit=crop&crop=center'},
+  surprise:{name:"Chef's<br>Selection",dish:"Chef's Selection",components:'A changing composition selected by the chef for tonight',tags:['Unexpected','Seasonal','Chef Selection'],price:'Market',lbl:'Tonight, let the chef choose.',image:'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=1600&q=82&auto=format&fit=crop&crop=center'}
 };
 
 function applyDish(cat){
@@ -714,7 +699,7 @@ function playVideo(){
   if(v){v.play().catch(function(){});o.style.display='none';}
 }
 
-var FORM_ENDPOINT='https://formspree.io/f/mnjordyd';
+var FORM_ENDPOINT='https://formspree.io/f/YOUR_FORM_ID';
 function submitForm(){
   var restaurant=document.getElementById('fRestaurant').value.trim();
   var name=document.getElementById('fName').value.trim();
@@ -733,15 +718,10 @@ function submitForm(){
 }
 
 function installImageFallbacks(){
-  document.querySelectorAll('img:not([src^="data:"])').forEach(function(img){
-    img.addEventListener('error',function(){
-      if(img.dataset.fb)return;
-      img.dataset.fb='1';
-      img.removeAttribute('src');
-      img.classList.add('img-fallback');
-    });
+  document.querySelectorAll('img:not(.nav__logo img):not(.brand-close__logo)').forEach(function(img){
+    img.addEventListener('error',function(){if(img.dataset.fb)return;img.dataset.fb='1';img.removeAttribute('src');img.classList.add('img-fallback');});
+    if(img.complete&&img.naturalWidth===0){if(img.dataset.fb)return;img.dataset.fb='1';img.removeAttribute('src');img.classList.add('img-fallback');}
   });
-});
 }
 installImageFallbacks();
 
