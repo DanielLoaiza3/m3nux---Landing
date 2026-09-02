@@ -379,13 +379,13 @@ footer{background:var(--ink);padding:24px 64px;display:flex;align-items:center;j
         <div class="cat-card__line" aria-hidden="true"></div>
       </div>
       <div class="cat-card" data-cat="vegetarian" role="button" tabindex="0" aria-label="Vegetarian — Plant forward" onclick="selectCat(this)" onkeydown="handleKey(event,this)">
-        <img class="cat-card__img" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&q=82&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
+        <img class="cat-card__img" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&q=82&auto=format&fit=crop&crop=center" alt="" loading="eager" decoding="async">
         <div class="cat-card__grad" aria-hidden="true"></div>
         <div class="cat-card__info"><div class="cat-card__name">Vegetarian</div><div class="cat-card__sub">Plant-Forward</div></div>
         <div class="cat-card__line" aria-hidden="true"></div>
       </div>
       <div class="cat-card" data-cat="surprise" role="button" tabindex="0" aria-label="Surprise Me — Chef selection" onclick="selectCat(this)" onkeydown="handleKey(event,this)">
-        <img class="cat-card__img" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=500&q=82&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
+        <img class="cat-card__img" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=500&q=82&auto=format&fit=crop&crop=center" alt="" loading="eager" decoding="async">
         <div class="cat-card__grad" aria-hidden="true"></div>
         <div class="cat-card__info"><div class="cat-card__name">Surprise Me</div><div class="cat-card__sub">Chef's Selection</div></div>
         <div class="cat-card__line" aria-hidden="true"></div>
@@ -532,19 +532,19 @@ footer{background:var(--ink);padding:24px 64px;display:flex;align-items:center;j
 <section class="transform" aria-label="Your restaurant, your M3NUX">
   <div class="transform__grid">
     <div class="transform__cell" id="tc1">
-      <img class="transform__cell-img" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1519984388953-d2406bc725e1?w=500&q=82&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
+      <img class="transform__cell-img" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1519984388953-d2406bc725e1?w=500&q=82&auto=format&fit=crop&crop=center" alt="" loading="eager" decoding="async">
       <div class="transform__cell-label"><div class="transform__cell-num">Your</div><div class="transform__cell-name">Menu.</div></div>
     </div>
     <div class="transform__cell" id="tc2">
-      <img class="transform__cell-img" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=800&q=82&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
+      <img class="transform__cell-img" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=800&q=82&auto=format&fit=crop&crop=center" alt="" loading="eager" decoding="async">
       <div class="transform__cell-label"><div class="transform__cell-num">Your</div><div class="transform__cell-name">Food.</div></div>
     </div>
     <div class="transform__cell" id="tc3">
-      <img class="transform__cell-img" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=82&auto=format&fit=crop" alt="" loading="lazy" decoding="async">
+      <img class="transform__cell-img" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=82&auto=format&fit=crop" alt="" loading="eager" decoding="async">
       <div class="transform__cell-label"><div class="transform__cell-num">Your</div><div class="transform__cell-name">Brand.</div></div>
     </div>
     <div class="transform__cell" id="tc4">
-      <img class="transform__cell-img" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1611599537845-1c7aca0091c7?w=500&q=82&auto=format&fit=crop&crop=center" alt="" loading="lazy" decoding="async">
+      <img class="transform__cell-img" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1611599537845-1c7aca0091c7?w=500&q=82&auto=format&fit=crop&crop=center" alt="" loading="eager" decoding="async">
       <div class="transform__cell-label"><div class="transform__cell-num">Your</div><div class="transform__cell-name"><em>M3NUX.</em></div></div>
     </div>
   </div>
@@ -728,9 +728,20 @@ function submitForm(){
 }
 
 function installImageFallbacks(){
-  document.querySelectorAll('img:not(.nav__logo img):not(.brand-close__logo)').forEach(function(img){
-    img.addEventListener('error',function(){if(img.dataset.fb)return;img.dataset.fb='1';img.removeAttribute('src');img.classList.add('img-fallback');});
-    if(img.complete&&img.naturalWidth===0){if(img.dataset.fb)return;img.dataset.fb='1';img.removeAttribute('src');img.classList.add('img-fallback');}
+  document.querySelectorAll('img:not([src^="data:"])').forEach(function(img){
+    img.addEventListener('error',function(){
+      if(img.dataset.fb)return;
+      img.dataset.fb='1';
+      img.removeAttribute('src');
+      img.classList.add('img-fallback');
+    });
+    // Only apply sync check for eager images that have already attempted to load
+    if(img.loading!=='lazy'&&img.complete&&img.naturalWidth===0&&img.src){
+      if(img.dataset.fb)return;
+      img.dataset.fb='1';
+      img.removeAttribute('src');
+      img.classList.add('img-fallback');
+    }
   });
 }
 installImageFallbacks();
